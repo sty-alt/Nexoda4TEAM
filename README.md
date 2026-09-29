@@ -14,6 +14,13 @@
 - **Admin Panel, Security Audit Logs & Granular RBAC Permissions**
 - **Sleek Marketing Website & Pricing Matrix**
 
+## Preview
+
+<p align="center">
+  <img src="public/screenshots/landing.png" alt="Nexoda4TEAM product landing page" width="49%" />
+  <img src="public/screenshots/dashboard.png" alt="Nexoda4TEAM team dashboard" width="49%" />
+</p>
+
 ---
 
 ## ⚡ Quick Start

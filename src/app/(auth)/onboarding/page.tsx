@@ -38,7 +38,7 @@ function OnboardingContent() {
     } catch {
       // safe fallback
     }
-    toast.success("Workspace ready! Welcome to Nexoda.");
+    toast.success("Workspace ready! Welcome to Nexoda4TEAM.");
     router.push(`/app/${initialSlug}/dashboard`);
   };
 
@@ -52,7 +52,7 @@ function OnboardingContent() {
           </div>
           <h1 className="text-2xl font-bold tracking-tight">Configure your environment</h1>
           <p className="text-sm text-muted-foreground">
-            Personalize Nexoda to match your team's rhythm
+            Personalize Nexoda4TEAM to match your team's rhythm
           </p>
         </div>
 
@@ -61,7 +61,7 @@ function OnboardingContent() {
           {step === 1 && (
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-foreground">
-                How will you primarily use Nexoda?
+                How will you primarily use Nexoda4TEAM?
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <button

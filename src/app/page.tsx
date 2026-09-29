@@ -138,7 +138,7 @@ export default function LandingPage() {
             <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center font-black text-white text-xs shadow-md shadow-indigo-500/30">
               N
             </div>
-            <span className="font-bold text-sm tracking-tight text-white">nexoda</span>
+            <span className="font-bold text-sm tracking-tight text-white">Nexoda4TEAM</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-xs text-zinc-400 font-medium">
@@ -189,7 +189,7 @@ export default function LandingPage() {
           </h1>
 
           <p className="relative z-30 mt-5 max-w-md text-[18px] leading-snug tracking-tight text-white/60 lg:mt-4 md:text-[16px] sm:text-[15px]">
-            Nexoda, an open-source platform, serves as an all-in-one replacement of Linear, Jira, Slack, and Notion.
+            Nexoda4TEAM, an open-source platform, brings project management, documentation, planning, and team communication together.
           </p>
 
           {/* CTA Button — exact Huly anatomy: bg-[#d1d1d1], dual radial flare layers, text-[#5A250A] */}
@@ -242,7 +242,7 @@ export default function LandingPage() {
                   <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
                 </div>
                 <div className="flex items-center gap-2 text-[11px] text-zinc-400 pl-3 border-l border-white/[0.08]">
-                  <span className="font-semibold text-white">Nexoda Tracker</span>
+                  <span className="font-semibold text-white">Nexoda4TEAM</span>
                   <span>/</span>
                   <span>Acme Platform</span>
                   <span>/</span>
@@ -955,7 +955,7 @@ export default function LandingPage() {
                 href="/login"
                 className="ember-btn inline-flex items-center gap-3 px-8 py-3.5 text-xs font-bold uppercase tracking-wider"
               >
-                <span>LAUNCH NEXODA WORKSPACE</span>
+                <span>LAUNCH NEXODA4TEAM</span>
                 <ArrowRight className="relative z-10 h-4 w-4" />
               </Link>
             </div>

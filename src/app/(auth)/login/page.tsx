@@ -37,7 +37,7 @@ export default function LoginPage() {
         throw new Error(data.error || "Failed to login");
       }
 
-      toast.success("Welcome back to Nexoda!");
+      toast.success("Welcome back to Nexoda4TEAM!");
       const targetSlug = data.workspace?.slug || "acme-corp";
       router.push(`/app/${targetSlug}/dashboard`);
       router.refresh();
