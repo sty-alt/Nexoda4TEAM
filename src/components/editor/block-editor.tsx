@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState, useEffect, useRef } from "react";
 import {
   Heading1,
@@ -162,20 +163,20 @@ export function BlockEditor({
         <div className="flex items-center gap-2">
           {savingStatus === "saving" ? (
             <span className="flex items-center gap-1.5 text-amber-500">
-              <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+              <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" /><LocalizedText>
               Saving changes...
-            </span>
+            </LocalizedText></span>
           ) : (
             <span className="flex items-center gap-1.5 text-emerald-500">
-              <CheckCircle2 className="h-3.5 w-3.5" /> All changes autosaved
-            </span>
+              <CheckCircle2 className="h-3.5 w-3.5" /><LocalizedText> All changes autosaved
+            </LocalizedText></span>
           )}
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-[11px] text-muted-foreground/70">
-            Press <kbd className="font-mono bg-muted px-1 rounded">/</kbd> for block commands
-          </span>
+          <span className="text-[11px] text-muted-foreground/70"><LocalizedText>
+            Press </LocalizedText><kbd className="font-mono bg-muted px-1 rounded"><LocalizedText>/</LocalizedText></kbd><LocalizedText> for block commands
+          </LocalizedText></span>
         </div>
       </div>
 
@@ -310,9 +311,9 @@ export function BlockEditor({
                 {/* Floating Slash Command Menu */}
                 {isSlashOpen && (
                   <div className="absolute top-8 left-0 z-50 w-64 rounded-xl border border-border/80 bg-popover p-1.5 shadow-2xl space-y-1 animate-in fade-in-50 zoom-in-95">
-                    <div className="text-[10px] font-semibold text-muted-foreground uppercase px-2 py-1 tracking-wider">
+                    <div className="text-[10px] font-semibold text-muted-foreground uppercase px-2 py-1 tracking-wider"><LocalizedText>
                       Basic Blocks
-                    </div>
+                    </LocalizedText></div>
                     {slashCommands.map((cmd) => {
                       const Icon = cmd.icon;
                       return (
@@ -325,8 +326,8 @@ export function BlockEditor({
                             <Icon className="h-3.5 w-3.5" />
                           </div>
                           <div>
-                            <div className="font-medium text-foreground">{cmd.label}</div>
-                            <div className="text-[10px] text-muted-foreground">{cmd.desc}</div>
+                            <div className="font-medium text-foreground"><LocalizedText>{cmd.label}</LocalizedText></div>
+                            <div className="text-[10px] text-muted-foreground"><LocalizedText>{cmd.desc}</LocalizedText></div>
                           </div>
                         </button>
                       );
@@ -343,9 +344,10 @@ export function BlockEditor({
           onClick={() => addBlockAfter(blocks[blocks.length - 1]?.id || "1", "p")}
           className="flex items-center gap-2 text-xs text-muted-foreground/60 hover:text-foreground py-3 transition-colors"
         >
-          <Plus className="h-4 w-4" /> Click or press Enter to add next block
-        </button>
+          <Plus className="h-4 w-4" /><LocalizedText> Click or press Enter to add next block
+        </LocalizedText></button>
       </div>
     </div>
   );
 }
+

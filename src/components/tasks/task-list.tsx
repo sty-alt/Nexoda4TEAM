@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState, useMemo } from "react";
 import {
   CheckSquare,
@@ -28,6 +30,7 @@ interface TaskListProps {
 }
 
 export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
+  const { locale } = useLocale();
   const queryClient = useQueryClient();
   const startTimer = useTimerStore((s) => s.startTimer);
 
@@ -117,13 +120,13 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
       case "URGENT":
-        return <Badge variant="urgent">Urgent</Badge>;
+        return <Badge variant="urgent"><LocalizedText>Urgent</LocalizedText></Badge>;
       case "HIGH":
-        return <Badge variant="warning">High</Badge>;
+        return <Badge variant="warning"><LocalizedText>High</LocalizedText></Badge>;
       case "MEDIUM":
-        return <Badge variant="default">Medium</Badge>;
+        return <Badge variant="default"><LocalizedText>Medium</LocalizedText></Badge>;
       default:
-        return <Badge variant="secondary">Low</Badge>;
+        return <Badge variant="secondary"><LocalizedText>Low</LocalizedText></Badge>;
     }
   };
 
@@ -148,12 +151,12 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
             onChange={(e) => setStatusFilter(e.target.value)}
             className="h-8 rounded-md border border-border/60 bg-background px-2 text-xs"
           >
-            <option value="ALL">All Statuses</option>
-            <option value="BACKLOG">Backlog</option>
-            <option value="TODO">Todo</option>
-            <option value="IN_PROGRESS">In Progress</option>
-            <option value="IN_REVIEW">In Review</option>
-            <option value="DONE">Done</option>
+            <option value="ALL"><LocalizedText>All Statuses</LocalizedText></option>
+            <option value="BACKLOG"><LocalizedText>Backlog</LocalizedText></option>
+            <option value="TODO"><LocalizedText>Todo</LocalizedText></option>
+            <option value="IN_PROGRESS"><LocalizedText>In Progress</LocalizedText></option>
+            <option value="IN_REVIEW"><LocalizedText>In Review</LocalizedText></option>
+            <option value="DONE"><LocalizedText>Done</LocalizedText></option>
           </select>
         </div>
       </div>
@@ -162,33 +165,33 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
       {selectedIds.length > 0 && (
         <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-between text-xs animate-in fade-in-50">
           <span className="font-semibold text-primary">
-            {selectedIds.length} tasks selected
-          </span>
+            {selectedIds.length}<LocalizedText> tasks selected
+          </LocalizedText></span>
           <div className="flex items-center gap-2">
             <Button
               size="sm"
               variant="outline"
               onClick={() => handleBulkStatus("DONE")}
               className="h-7 text-xs"
-            >
+            ><LocalizedText>
               Mark Done
-            </Button>
+            </LocalizedText></Button>
             <Button
               size="sm"
               variant="outline"
               onClick={() => handleBulkStatus("IN_PROGRESS")}
               className="h-7 text-xs"
-            >
+            ><LocalizedText>
               Set In Progress
-            </Button>
+            </LocalizedText></Button>
             <Button
               size="sm"
               variant="destructive"
               onClick={handleBulkDelete}
               className="h-7 text-xs gap-1"
             >
-              <Trash2 className="h-3 w-3" /> Delete
-            </Button>
+              <Trash2 className="h-3 w-3" /><LocalizedText> Delete
+            </LocalizedText></Button>
           </div>
         </div>
       )}
@@ -217,7 +220,7 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
                 className="p-3 cursor-pointer hover:text-foreground transition-colors w-24"
               >
                 <div className="flex items-center gap-1">
-                  <span>ID</span>
+                  <span><LocalizedText>ID</LocalizedText></span>
                   <ArrowUpDown className="h-3 w-3" />
                 </div>
               </th>
@@ -229,14 +232,14 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
                 className="p-3 cursor-pointer hover:text-foreground transition-colors"
               >
                 <div className="flex items-center gap-1">
-                  <span>Title</span>
+                  <span><LocalizedText>Title</LocalizedText></span>
                   <ArrowUpDown className="h-3 w-3" />
                 </div>
               </th>
-              <th className="p-3 w-28">Status</th>
-              <th className="p-3 w-24">Priority</th>
-              <th className="p-3 w-36">Assignee</th>
-              <th className="p-3 w-32">Project</th>
+              <th className="p-3 w-28"><LocalizedText>Status</LocalizedText></th>
+              <th className="p-3 w-24"><LocalizedText>Priority</LocalizedText></th>
+              <th className="p-3 w-36"><LocalizedText>Assignee</LocalizedText></th>
+              <th className="p-3 w-32"><LocalizedText>Project</LocalizedText></th>
               <th
                 onClick={() => {
                   setSortField("dueDate");
@@ -245,11 +248,11 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
                 className="p-3 cursor-pointer hover:text-foreground transition-colors w-28"
               >
                 <div className="flex items-center gap-1">
-                  <span>Due Date</span>
+                  <span><LocalizedText>Due Date</LocalizedText></span>
                   <ArrowUpDown className="h-3 w-3" />
                 </div>
               </th>
-              <th className="p-3 w-16 text-right">Actions</th>
+              <th className="p-3 w-16 text-right"><LocalizedText>Actions</LocalizedText></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/30">
@@ -258,9 +261,9 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
                 <td
                   colSpan={9}
                   className="p-8 text-center text-xs text-muted-foreground"
-                >
+                ><LocalizedText>
                   No tasks match the filter criteria.
-                </td>
+                </LocalizedText></td>
               </tr>
             ) : (
               processedTasks.map((task) => {
@@ -306,12 +309,12 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
                         }}
                         className="h-7 rounded border border-border/40 bg-background px-1.5 text-[11px] font-medium"
                       >
-                        <option value="BACKLOG">Backlog</option>
-                        <option value="TODO">Todo</option>
-                        <option value="IN_PROGRESS">In Progress</option>
-                        <option value="IN_REVIEW">In Review</option>
-                        <option value="DONE">Done</option>
-                        <option value="CANCELED">Canceled</option>
+                        <option value="BACKLOG"><LocalizedText>Backlog</LocalizedText></option>
+                        <option value="TODO"><LocalizedText>Todo</LocalizedText></option>
+                        <option value="IN_PROGRESS"><LocalizedText>In Progress</LocalizedText></option>
+                        <option value="IN_REVIEW"><LocalizedText>In Review</LocalizedText></option>
+                        <option value="DONE"><LocalizedText>Done</LocalizedText></option>
+                        <option value="CANCELED"><LocalizedText>Canceled</LocalizedText></option>
                       </select>
                     </td>
                     <td className="p-3">{getPriorityBadge(task.priority)}</td>
@@ -328,9 +331,9 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
                           </span>
                         </div>
                       ) : (
-                        <span className="text-muted-foreground text-[11px]">
+                        <span className="text-muted-foreground text-[11px]"><LocalizedText>
                           Unassigned
-                        </span>
+                        </LocalizedText></span>
                       )}
                     </td>
                     <td className="p-3">
@@ -345,7 +348,7 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
                       )}
                     </td>
                     <td className="p-3 text-muted-foreground">
-                      {task.dueDate ? formatDate(task.dueDate) : "—"}
+                      {task.dueDate ? formatDate(task.dueDate, locale) : "—"}
                     </td>
                     <td
                       className="p-3 text-right"
@@ -379,3 +382,4 @@ export function TaskList({ tasks, workspaceId, members = [] }: TaskListProps) {
     </div>
   );
 }
+

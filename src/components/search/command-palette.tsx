@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/useUIStore";
@@ -145,9 +146,9 @@ export function CommandPalette({ workspaceSlug }: CommandPaletteProps) {
             className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
             autoFocus
           />
-          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-muted border border-border/60 text-muted-foreground shrink-0">
+          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-muted border border-border/60 text-muted-foreground shrink-0"><LocalizedText>
             ESC
-          </kbd>
+          </LocalizedText></kbd>
         </div>
 
         {/* Results Stream */}
@@ -157,9 +158,9 @@ export function CommandPalette({ workspaceSlug }: CommandPaletteProps) {
             <>
               {searchResults.tasks?.length > 0 && (
                 <div className="space-y-1">
-                  <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-2.5 py-1">
+                  <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-2.5 py-1"><LocalizedText>
                     Tasks & Issues
-                  </div>
+                  </LocalizedText></div>
                   {searchResults.tasks.map((task: any) => (
                     <button
                       key={task.id}
@@ -179,7 +180,7 @@ export function CommandPalette({ workspaceSlug }: CommandPaletteProps) {
                         </span>
                       </div>
                       <span className="text-[10px] px-2 py-0.5 rounded bg-muted text-muted-foreground font-semibold shrink-0">
-                        {task.status}
+                        <LocalizedText>{task.status}</LocalizedText>
                       </span>
                     </button>
                   ))}
@@ -188,9 +189,9 @@ export function CommandPalette({ workspaceSlug }: CommandPaletteProps) {
 
               {searchResults.docs?.length > 0 && (
                 <div className="space-y-1">
-                  <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-2.5 py-1">
+                  <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-2.5 py-1"><LocalizedText>
                     Documents
-                  </div>
+                  </LocalizedText></div>
                   {searchResults.docs.map((doc: any) => (
                     <button
                       key={doc.id}
@@ -216,9 +217,9 @@ export function CommandPalette({ workspaceSlug }: CommandPaletteProps) {
 
           {/* Quick Commands & Navigation */}
           <div className="space-y-1">
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-2.5 py-1">
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-2.5 py-1"><LocalizedText>
               Commands & Quick Navigation
-            </div>
+            </LocalizedText></div>
             {filteredActions.map((action) => {
               const Icon = action.icon;
               return (
@@ -230,7 +231,7 @@ export function CommandPalette({ workspaceSlug }: CommandPaletteProps) {
                   <div className="flex items-center gap-2.5">
                     <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
                     <span className="font-medium text-foreground">
-                      {action.label}
+                      <LocalizedText>{action.label}</LocalizedText>
                     </span>
                   </div>
                   {action.shortcut && (
@@ -247,15 +248,16 @@ export function CommandPalette({ workspaceSlug }: CommandPaletteProps) {
         {/* Footer */}
         <div className="p-2.5 border-t border-border/40 bg-muted/30 flex items-center justify-between text-[11px] text-muted-foreground px-4">
           <span className="flex items-center gap-1.5">
-            <Sparkles className="h-3 w-3 text-primary" /> Nexoda Fast Search
-          </span>
+            <Sparkles className="h-3 w-3 text-primary" /><LocalizedText> Nexoda Fast Search
+          </LocalizedText></span>
           <div className="flex items-center gap-2 font-mono text-[10px]">
-            <span>↑↓ Navigate</span>
-            <span>↵ Select</span>
-            <span>Esc Close</span>
+            <span><LocalizedText>↑↓ Navigate</LocalizedText></span>
+            <span><LocalizedText>↵ Select</LocalizedText></span>
+            <span><LocalizedText>Esc Close</LocalizedText></span>
           </div>
         </div>
       </DialogContent>
     </Dialog>
   );
 }
+

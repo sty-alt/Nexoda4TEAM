@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState, Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -23,6 +25,7 @@ import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 
 function DocsContent() {
+  const { locale } = useLocale();
   const params = useParams();
   const searchParams = useSearchParams();
   const workspaceSlug = params.workspaceSlug as string;
@@ -122,15 +125,15 @@ function DocsContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="font-bold text-sm tracking-tight flex items-center gap-2">
-              <BookOpen className="h-4 w-4 text-primary" /> Knowledge Base
-            </h2>
+              <BookOpen className="h-4 w-4 text-primary" /><LocalizedText> Knowledge Base
+            </LocalizedText></h2>
             <Button
               size="sm"
               onClick={() => createDocMutation.mutate()}
               className="h-7 px-2 text-xs gap-1"
             >
-              <Plus className="h-3.5 w-3.5" /> New Doc
-            </Button>
+              <Plus className="h-3.5 w-3.5" /><LocalizedText> New Doc
+            </LocalizedText></Button>
           </div>
 
           {/* Quick Search */}
@@ -149,9 +152,9 @@ function DocsContent() {
             {/* Favorites section */}
             {favoriteDocs.length > 0 && (
               <div className="space-y-1">
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2">
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2"><LocalizedText>
                   Favorites
-                </div>
+                </LocalizedText></div>
                 {favoriteDocs.map((doc: any) => (
                   <button
                     key={doc.id}
@@ -173,9 +176,9 @@ function DocsContent() {
 
             {/* All Documents */}
             <div className="space-y-1">
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2">
-                All Documents ({documents.length})
-              </div>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2"><LocalizedText>
+                All Documents (</LocalizedText>{documents.length}<LocalizedText>)
+              </LocalizedText></div>
               {filteredDocs.map((doc: any) => (
                 <button
                   key={doc.id}
@@ -236,8 +239,8 @@ function DocsContent() {
                     }`}
                   />
                 </button>
-                <span className="text-xs text-muted-foreground">
-                  Updated {formatDate(activeDoc.updatedAt)} by {activeDoc.author?.name}
+                <span className="text-xs text-muted-foreground"><LocalizedText>
+                  Updated </LocalizedText>{formatDate(activeDoc.updatedAt, locale)}<LocalizedText> by </LocalizedText>{activeDoc.author?.name}
                 </span>
               </div>
 
@@ -251,8 +254,8 @@ function DocsContent() {
                   }}
                   className="h-7 text-xs gap-1"
                 >
-                  <Share2 className="h-3 w-3" /> Share
-                </Button>
+                  <Share2 className="h-3 w-3" /><LocalizedText> Share
+                </LocalizedText></Button>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -278,9 +281,9 @@ function DocsContent() {
             />
           </div>
         ) : (
-          <div className="h-full flex items-center justify-center text-center p-12 text-muted-foreground text-xs">
+          <div className="h-full flex items-center justify-center text-center p-12 text-muted-foreground text-xs"><LocalizedText>
             Select or create a document to start writing.
-          </div>
+          </LocalizedText></div>
         )}
       </div>
     </div>
@@ -289,8 +292,9 @@ function DocsContent() {
 
 export default function DocsPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-xs text-muted-foreground">Loading documents...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-xs text-muted-foreground"><LocalizedText>Loading documents...</LocalizedText></div>}>
       <DocsContent />
     </Suspense>
   );
 }
+

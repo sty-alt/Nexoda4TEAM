@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -31,6 +33,7 @@ import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function DrivePage() {
+  const { locale } = useLocale();
   const params = useParams();
   const workspaceSlug = params.workspaceSlug as string;
   const queryClient = useQueryClient();
@@ -135,10 +138,10 @@ export default function DrivePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Drive Storage</h1>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Drive Storage</LocalizedText></h1>
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Cloud file storage, shared team assets, and documentation attachments
-          </p>
+          </LocalizedText></p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -148,15 +151,15 @@ export default function DrivePage() {
             onClick={() => setCreateFolderOpen(true)}
             className="text-xs gap-1.5 h-8"
           >
-            <FolderPlus className="h-4 w-4" /> New Folder
-          </Button>
+            <FolderPlus className="h-4 w-4" /><LocalizedText> New Folder
+          </LocalizedText></Button>
           <Button
             size="sm"
             onClick={() => setUploadOpen(true)}
             className="text-xs gap-1.5 h-8"
           >
-            <UploadCloud className="h-4 w-4" /> Upload File
-          </Button>
+            <UploadCloud className="h-4 w-4" /><LocalizedText> Upload File
+          </LocalizedText></Button>
         </div>
       </div>
 
@@ -204,10 +207,10 @@ export default function DrivePage() {
       ) : filtered.length === 0 ? (
         <div className="text-center py-16 rounded-xl border border-dashed border-border/60 p-8 space-y-2">
           <HardDrive className="h-10 w-10 text-muted-foreground/60 mx-auto" />
-          <h3 className="font-semibold text-sm">Drive is Empty</h3>
-          <p className="text-xs text-muted-foreground">
+          <h3 className="font-semibold text-sm"><LocalizedText>Drive is Empty</LocalizedText></h3>
+          <p className="text-xs text-muted-foreground"><LocalizedText>
             Create a folder or upload documents, design specs, and images.
-          </p>
+          </LocalizedText></p>
         </div>
       ) : viewMode === "grid" ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -242,7 +245,7 @@ export default function DrivePage() {
                 </h4>
                 <div className="text-[11px] text-muted-foreground mt-0.5 flex items-center justify-between">
                   <span>{formatFileSize(item.size)}</span>
-                  <span>{formatDate(item.createdAt)}</span>
+                  <span>{formatDate(item.createdAt, locale)}</span>
                 </div>
               </div>
             </div>
@@ -253,10 +256,10 @@ export default function DrivePage() {
           <table className="w-full text-left text-xs">
             <thead className="bg-muted/40 border-b border-border/40 text-muted-foreground font-semibold">
               <tr>
-                <th className="p-3">Name</th>
-                <th className="p-3 w-32">Size</th>
-                <th className="p-3 w-40">Uploaded</th>
-                <th className="p-3 w-16 text-right">Action</th>
+                <th className="p-3"><LocalizedText>Name</LocalizedText></th>
+                <th className="p-3 w-32"><LocalizedText>Size</LocalizedText></th>
+                <th className="p-3 w-40"><LocalizedText>Uploaded</LocalizedText></th>
+                <th className="p-3 w-16 text-right"><LocalizedText>Action</LocalizedText></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/30">
@@ -271,7 +274,7 @@ export default function DrivePage() {
                     <span>{item.name}</span>
                   </td>
                   <td className="p-3 text-muted-foreground">{formatFileSize(item.size)}</td>
-                  <td className="p-3 text-muted-foreground">{formatDate(item.createdAt)}</td>
+                  <td className="p-3 text-muted-foreground">{formatDate(item.createdAt, locale)}</td>
                   <td className="p-3 text-right">
                     <button
                       onClick={() => deleteMutation.mutate(item.id)}
@@ -298,11 +301,11 @@ export default function DrivePage() {
           >
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <FolderPlus className="h-5 w-5 text-primary" /> Create Folder
-              </DialogTitle>
+                <FolderPlus className="h-5 w-5 text-primary" /><LocalizedText> Create Folder
+              </LocalizedText></DialogTitle>
             </DialogHeader>
             <div className="py-4 space-y-2 text-xs">
-              <label className="font-medium text-muted-foreground">Folder Name</label>
+              <label className="font-medium text-muted-foreground"><LocalizedText>Folder Name</LocalizedText></label>
               <Input
                 placeholder="e.g. Design Assets"
                 value={folderName}
@@ -312,12 +315,12 @@ export default function DrivePage() {
               />
             </div>
             <DialogFooter>
-              <Button type="button" variant="outline" size="sm" onClick={() => setCreateFolderOpen(false)}>
+              <Button type="button" variant="outline" size="sm" onClick={() => setCreateFolderOpen(false)}><LocalizedText>
                 Cancel
-              </Button>
-              <Button type="submit" size="sm" disabled={createFolderMutation.isPending}>
+              </LocalizedText></Button>
+              <Button type="submit" size="sm" disabled={createFolderMutation.isPending}><LocalizedText>
                 Create
-              </Button>
+              </LocalizedText></Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -334,11 +337,11 @@ export default function DrivePage() {
           >
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <UploadCloud className="h-5 w-5 text-primary" /> Upload File
-              </DialogTitle>
+                <UploadCloud className="h-5 w-5 text-primary" /><LocalizedText> Upload File
+              </LocalizedText></DialogTitle>
             </DialogHeader>
             <div className="py-4 space-y-2 text-xs">
-              <label className="font-medium text-muted-foreground">File Name with Extension</label>
+              <label className="font-medium text-muted-foreground"><LocalizedText>File Name with Extension</LocalizedText></label>
               <Input
                 placeholder="e.g. architecture_blueprint_v3.png"
                 value={fileName}
@@ -348,12 +351,12 @@ export default function DrivePage() {
               />
             </div>
             <DialogFooter>
-              <Button type="button" variant="outline" size="sm" onClick={() => setUploadOpen(false)}>
+              <Button type="button" variant="outline" size="sm" onClick={() => setUploadOpen(false)}><LocalizedText>
                 Cancel
-              </Button>
-              <Button type="submit" size="sm" disabled={uploadFileMutation.isPending}>
+              </LocalizedText></Button>
+              <Button type="submit" size="sm" disabled={uploadFileMutation.isPending}><LocalizedText>
                 Upload
-              </Button>
+              </LocalizedText></Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -361,3 +364,4 @@ export default function DrivePage() {
     </div>
   );
 }
+

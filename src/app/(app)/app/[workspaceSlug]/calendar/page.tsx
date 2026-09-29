@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -27,6 +29,7 @@ import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function CalendarPage() {
+  const { locale } = useLocale();
   const params = useParams();
   const workspaceSlug = params.workspaceSlug as string;
   const queryClient = useQueryClient();
@@ -174,14 +177,14 @@ export default function CalendarPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">Calendar & Deadlines</h1>
+            <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Calendar & Deadlines</LocalizedText></h1>
             <span className="font-mono text-sm font-semibold text-muted-foreground">
-              {currentDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+              {currentDate.toLocaleDateString(locale === "ru" ? "ru-RU" : "en-US", { month: "long", year: "numeric" })}
             </span>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Team meetings, task blocks, project deadlines, and personal milestones
-          </p>
+          </LocalizedText></p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -190,9 +193,9 @@ export default function CalendarPage() {
             <Button variant="ghost" size="sm" onClick={prevMonth} className="h-7 w-7 p-0">
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" onClick={today} className="h-7 px-2.5 text-xs">
+            <Button variant="ghost" size="sm" onClick={today} className="h-7 px-2.5 text-xs"><LocalizedText>
               Today
-            </Button>
+            </LocalizedText></Button>
             <Button variant="ghost" size="sm" onClick={nextMonth} className="h-7 w-7 p-0">
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -203,8 +206,8 @@ export default function CalendarPage() {
             onClick={() => setNewEventOpen(true)}
             className="text-xs gap-1.5 h-8"
           >
-            <Plus className="h-4 w-4" /> New Event
-          </Button>
+            <Plus className="h-4 w-4" /><LocalizedText> New Event
+          </LocalizedText></Button>
         </div>
       </div>
 
@@ -212,13 +215,13 @@ export default function CalendarPage() {
       <div className="rounded-xl border border-border/40 overflow-hidden bg-card/50 shadow-sm">
         {/* Day of Week Headers */}
         <div className="grid grid-cols-7 border-b border-border/40 bg-muted/40 text-center text-xs font-semibold text-muted-foreground py-2.5">
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
+          <div><LocalizedText>Sun</LocalizedText></div>
+          <div><LocalizedText>Mon</LocalizedText></div>
+          <div><LocalizedText>Tue</LocalizedText></div>
+          <div><LocalizedText>Wed</LocalizedText></div>
+          <div><LocalizedText>Thu</LocalizedText></div>
+          <div><LocalizedText>Fri</LocalizedText></div>
+          <div><LocalizedText>Sat</LocalizedText></div>
         </div>
 
         {/* Days Grid */}
@@ -289,13 +292,13 @@ export default function CalendarPage() {
           <form onSubmit={handleCreate}>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <CalendarIcon className="h-5 w-5 text-primary" /> Create Calendar Event
-              </DialogTitle>
+                <CalendarIcon className="h-5 w-5 text-primary" /><LocalizedText> Create Calendar Event
+              </LocalizedText></DialogTitle>
             </DialogHeader>
 
             <div className="space-y-3 py-3 text-xs">
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Event Title</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Event Title</LocalizedText></label>
                 <Input
                   placeholder="e.g. Sprint 24 Retrospective"
                   value={eventTitle}
@@ -307,7 +310,7 @@ export default function CalendarPage() {
 
               <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-1">
-                  <label className="font-medium text-muted-foreground">Date</label>
+                  <label className="font-medium text-muted-foreground"><LocalizedText>Date</LocalizedText></label>
                   <Input
                     type="date"
                     value={eventDate}
@@ -316,7 +319,7 @@ export default function CalendarPage() {
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="font-medium text-muted-foreground">Time</label>
+                  <label className="font-medium text-muted-foreground"><LocalizedText>Time</LocalizedText></label>
                   <Input
                     type="time"
                     value={eventTime}
@@ -327,27 +330,27 @@ export default function CalendarPage() {
               </div>
 
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Event Category</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Event Category</LocalizedText></label>
                 <select
                   value={eventType}
                   onChange={(e) => setEventType(e.target.value)}
                   className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                 >
-                  <option value="MEETING">Meeting</option>
-                  <option value="TASK_BLOCK">Task Block</option>
-                  <option value="DEADLINE">Deadline</option>
-                  <option value="PERSONAL">Personal</option>
+                  <option value="MEETING"><LocalizedText>Meeting</LocalizedText></option>
+                  <option value="TASK_BLOCK"><LocalizedText>Task Block</LocalizedText></option>
+                  <option value="DEADLINE"><LocalizedText>Deadline</LocalizedText></option>
+                  <option value="PERSONAL"><LocalizedText>Personal</LocalizedText></option>
                 </select>
               </div>
             </div>
 
             <DialogFooter>
-              <Button type="button" variant="outline" size="sm" onClick={() => setNewEventOpen(false)}>
+              <Button type="button" variant="outline" size="sm" onClick={() => setNewEventOpen(false)}><LocalizedText>
                 Cancel
-              </Button>
-              <Button type="submit" size="sm" disabled={createEventMutation.isPending}>
+              </LocalizedText></Button>
+              <Button type="submit" size="sm" disabled={createEventMutation.isPending}><LocalizedText>
                 Create Event
-              </Button>
+              </LocalizedText></Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -355,3 +358,4 @@ export default function CalendarPage() {
     </div>
   );
 }
+

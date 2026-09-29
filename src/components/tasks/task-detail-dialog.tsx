@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -45,6 +47,7 @@ export function TaskDetailDialog({
   onOpenChange,
   members = [],
 }: TaskDetailDialogProps) {
+  const { locale, t } = useLocale();
   const queryClient = useQueryClient();
   const startTimer = useTimerStore((s) => s.startTimer);
 
@@ -171,7 +174,7 @@ export function TaskDetailDialog({
             <span className="font-mono text-xs font-semibold text-muted-foreground">
               {task.identifier}
             </span>
-            <span className="text-xs text-muted-foreground">•</span>
+            <span className="text-xs text-muted-foreground"><LocalizedText>•</LocalizedText></span>
             <span className="text-xs font-medium text-muted-foreground">
               {task.project?.name}
             </span>
@@ -185,7 +188,7 @@ export function TaskDetailDialog({
               className="h-7 text-xs gap-1.5"
             >
               <Play className="h-3 w-3 fill-primary text-primary" />
-              <span>Track Time</span>
+              <span><LocalizedText>Track Time</LocalizedText></span>
             </Button>
           </div>
         </div>
@@ -210,9 +213,9 @@ export function TaskDetailDialog({
                       updateTaskMutation.mutate({ title: titleValue });
                       setIsEditingTitle(false);
                     }}
-                  >
+                  ><LocalizedText>
                     Save
-                  </Button>
+                  </LocalizedText></Button>
                 </div>
               ) : (
                 <h2
@@ -229,9 +232,9 @@ export function TaskDetailDialog({
 
             {/* Description */}
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider"><LocalizedText>
                 Description
-              </label>
+              </LocalizedText></label>
               <Textarea
                 defaultValue={task.description || ""}
                 placeholder="Add a detailed description, specifications, or notes..."
@@ -248,10 +251,10 @@ export function TaskDetailDialog({
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-                  <CheckSquare className="h-3.5 w-3.5" /> Subtasks (
-                  {task.subtasks?.filter((s: any) => s.completed).length || 0}/
-                  {task.subtasks?.length || 0})
-                </label>
+                  <CheckSquare className="h-3.5 w-3.5" /><LocalizedText> Subtasks (
+                  </LocalizedText>{task.subtasks?.filter((s: any) => s.completed).length || 0}<LocalizedText>/
+                  </LocalizedText>{task.subtasks?.length || 0}<LocalizedText>)
+                </LocalizedText></label>
               </div>
 
               <div className="space-y-1.5">
@@ -312,8 +315,8 @@ export function TaskDetailDialog({
             {task.githubLinks && task.githubLinks.length > 0 && (
               <div className="space-y-2 pt-2 border-t border-border/40">
                 <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-                  <GitPullRequest className="h-3.5 w-3.5" /> Linked Pull Requests & Issues
-                </label>
+                  <GitPullRequest className="h-3.5 w-3.5" /><LocalizedText> Linked Pull Requests & Issues
+                </LocalizedText></label>
                 <div className="space-y-1.5">
                   {task.githubLinks.map((link: any) => (
                     <a
@@ -331,7 +334,7 @@ export function TaskDetailDialog({
                         </span>
                       </div>
                       <Badge variant="success" className="text-[10px]">
-                        {link.status || "OPEN"}
+                        <LocalizedText>{link.status || "OPEN"}</LocalizedText>
                       </Badge>
                     </a>
                   ))}
@@ -342,8 +345,8 @@ export function TaskDetailDialog({
             {/* Comments Thread */}
             <div className="space-y-3 pt-4 border-t border-border/40">
               <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-                <MessageSquare className="h-3.5 w-3.5" /> Activity & Discussion
-              </label>
+                <MessageSquare className="h-3.5 w-3.5" /><LocalizedText> Activity & Discussion
+              </LocalizedText></label>
 
               <div className="space-y-3">
                 {task.comments?.map((comment: any) => (
@@ -360,7 +363,7 @@ export function TaskDetailDialog({
                           {comment.user.name}
                         </span>
                         <span className="text-[10px] text-muted-foreground">
-                          {formatDate(comment.createdAt)}
+                          {formatDate(comment.createdAt, locale)}
                         </span>
                       </div>
                       <p className="text-foreground/90 whitespace-pre-wrap">{comment.content}</p>
@@ -386,9 +389,9 @@ export function TaskDetailDialog({
                   className="min-h-[70px] text-xs resize-none"
                 />
                 <div className="flex justify-end">
-                  <Button type="submit" size="sm" className="h-7 text-xs">
+                  <Button type="submit" size="sm" className="h-7 text-xs"><LocalizedText>
                     Send Comment
-                  </Button>
+                  </LocalizedText></Button>
                 </div>
               </form>
             </div>
@@ -398,52 +401,52 @@ export function TaskDetailDialog({
           <div className="p-6 space-y-5 bg-muted/10 text-xs">
             {/* Status */}
             <div className="space-y-1.5">
-              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]">
+              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]"><LocalizedText>
                 Status
-              </label>
+              </LocalizedText></label>
               <select
                 value={task.status}
                 onChange={(e) => updateTaskMutation.mutate({ status: e.target.value })}
                 className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs font-medium"
               >
-                <option value="BACKLOG">Backlog</option>
-                <option value="TODO">Todo</option>
-                <option value="IN_PROGRESS">In Progress</option>
-                <option value="IN_REVIEW">In Review</option>
-                <option value="DONE">Done</option>
-                <option value="CANCELED">Canceled</option>
+                <option value="BACKLOG"><LocalizedText>Backlog</LocalizedText></option>
+                <option value="TODO"><LocalizedText>Todo</LocalizedText></option>
+                <option value="IN_PROGRESS"><LocalizedText>In Progress</LocalizedText></option>
+                <option value="IN_REVIEW"><LocalizedText>In Review</LocalizedText></option>
+                <option value="DONE"><LocalizedText>Done</LocalizedText></option>
+                <option value="CANCELED"><LocalizedText>Canceled</LocalizedText></option>
               </select>
             </div>
 
             {/* Priority */}
             <div className="space-y-1.5">
-              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]">
+              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]"><LocalizedText>
                 Priority
-              </label>
+              </LocalizedText></label>
               <select
                 value={task.priority}
                 onChange={(e) => updateTaskMutation.mutate({ priority: e.target.value })}
                 className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs font-medium"
               >
-                <option value="URGENT">Urgent</option>
-                <option value="HIGH">High</option>
-                <option value="MEDIUM">Medium</option>
-                <option value="LOW">Low</option>
-                <option value="NONE">None</option>
+                <option value="URGENT"><LocalizedText>Urgent</LocalizedText></option>
+                <option value="HIGH"><LocalizedText>High</LocalizedText></option>
+                <option value="MEDIUM"><LocalizedText>Medium</LocalizedText></option>
+                <option value="LOW"><LocalizedText>Low</LocalizedText></option>
+                <option value="NONE"><LocalizedText>None</LocalizedText></option>
               </select>
             </div>
 
             {/* Assignee */}
             <div className="space-y-1.5">
-              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]">
+              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]"><LocalizedText>
                 Assignee
-              </label>
+              </LocalizedText></label>
               <select
                 value={task.assigneeId || ""}
                 onChange={(e) => updateTaskMutation.mutate({ assigneeId: e.target.value || null })}
                 className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs font-medium"
               >
-                <option value="">Unassigned</option>
+                <option value=""><LocalizedText>Unassigned</LocalizedText></option>
                 {members.map((m) => (
                   <option key={m.id} value={m.id}>
                     {m.name}
@@ -454,9 +457,9 @@ export function TaskDetailDialog({
 
             {/* Due Date */}
             <div className="space-y-1.5">
-              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]">
+              <label className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]"><LocalizedText>
                 Due Date
-              </label>
+              </LocalizedText></label>
               <input
                 type="date"
                 defaultValue={task.dueDate ? new Date(task.dueDate).toISOString().split("T")[0] : ""}
@@ -472,17 +475,17 @@ export function TaskDetailDialog({
             {/* Estimates & Time Tracking */}
             <div className="space-y-2 pt-2 border-t border-border/40">
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]">
+                <span className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]"><LocalizedText>
                   Estimated Time
-                </span>
-                <span className="font-medium text-foreground">{task.estimateHours || 0}h</span>
+                </LocalizedText></span>
+                <span className="font-medium text-foreground">{task.estimateHours || 0}<LocalizedText>h</LocalizedText></span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]">
+                <span className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]"><LocalizedText>
                   Tracked Time
-                </span>
+                </LocalizedText></span>
                 <span className="font-medium text-emerald-500 font-mono">
-                  {formatTime(task.trackedSeconds || 0)}
+                  {formatTime(task.trackedSeconds || 0, locale)}
                 </span>
               </div>
             </div>
@@ -494,7 +497,7 @@ export function TaskDetailDialog({
                 size="sm"
                 className="w-full h-8 text-xs gap-1.5"
                 onClick={() => {
-                  if (confirm("Are you sure you want to delete this issue?")) {
+                  if (confirm(t("Are you sure you want to delete this issue?"))) {
                     fetch(`/api/tasks/${task.id}`, { method: "DELETE" }).then(() => {
                       toast.success("Task deleted");
                       onOpenChange(false);
@@ -503,8 +506,8 @@ export function TaskDetailDialog({
                   }
                 }}
               >
-                <Trash2 className="h-3.5 w-3.5" /> Delete Issue
-              </Button>
+                <Trash2 className="h-3.5 w-3.5" /><LocalizedText> Delete Issue
+              </LocalizedText></Button>
             </div>
           </div>
         </div>
@@ -512,3 +515,4 @@ export function TaskDetailDialog({
     </Dialog>
   );
 }
+

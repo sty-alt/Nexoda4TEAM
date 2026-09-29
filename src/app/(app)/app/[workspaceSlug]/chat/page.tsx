@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -31,6 +33,7 @@ import { toast } from "sonner";
 const QUICK_EMOJIS = ["👍", "❤️", "🚀", "🔥", "👀", "🎉"];
 
 function ChatContent() {
+  const { locale, t } = useLocale();
   const params = useParams();
   const searchParams = useSearchParams();
   const workspaceSlug = params.workspaceSlug as string;
@@ -166,8 +169,8 @@ function ChatContent() {
           {/* Header */}
           <div className="flex items-center justify-between px-1">
             <h2 className="font-bold text-sm tracking-tight flex items-center gap-1.5">
-              <MessageSquare className="h-4 w-4 text-primary" /> Workspace Chat
-            </h2>
+              <MessageSquare className="h-4 w-4 text-primary" /><LocalizedText> Workspace Chat
+            </LocalizedText></h2>
             <Button
               size="sm"
               variant="ghost"
@@ -181,9 +184,9 @@ function ChatContent() {
 
           {/* Channels List */}
           <div className="space-y-1">
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2"><LocalizedText>
               Channels
-            </div>
+            </LocalizedText></div>
             {channels.map((chan: any) => {
               const isActive = chan.id === activeChannelId;
               return (
@@ -211,9 +214,9 @@ function ChatContent() {
 
           {/* Direct Messages */}
           <div className="space-y-1 pt-2 border-t border-border/30">
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 px-2"><LocalizedText>
               Team Members
-            </div>
+            </LocalizedText></div>
             {workspace?.members?.map((m: any) => (
               <div
                 key={m.id}
@@ -243,31 +246,31 @@ function ChatContent() {
               {activeChannel?.name || "general"}
             </span>
             {activeChannel?.topic && (
-              <span className="text-[11px] text-muted-foreground truncate hidden sm:inline">
-                — {activeChannel.topic}
+              <span className="text-[11px] text-muted-foreground truncate hidden sm:inline"><LocalizedText>
+                — </LocalizedText>{activeChannel.topic}
               </span>
             )}
           </div>
 
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" /><LocalizedText>
               Real-time
-            </span>
+            </LocalizedText></span>
           </div>
         </div>
 
         {/* Message Stream */}
         <div className="flex-1 p-4 overflow-y-auto space-y-4">
           {messagesLoading && messages.length === 0 ? (
-            <div className="text-center py-12 text-xs text-muted-foreground animate-pulse">
+            <div className="text-center py-12 text-xs text-muted-foreground animate-pulse"><LocalizedText>
               Loading chat history...
-            </div>
+            </LocalizedText></div>
           ) : messages.length === 0 ? (
             <div className="text-center py-16 text-xs text-muted-foreground space-y-1">
               <Sparkles className="h-6 w-6 text-primary mx-auto mb-2" />
-              <div className="font-semibold text-foreground">Welcome to #{activeChannel?.name}!</div>
-              <div>This is the start of the discussion. Say hello to the team.</div>
+              <div className="font-semibold text-foreground"><LocalizedText>Welcome to #</LocalizedText>{activeChannel?.name}<LocalizedText>!</LocalizedText></div>
+              <div><LocalizedText>This is the start of the discussion. Say hello to the team.</LocalizedText></div>
             </div>
           ) : (
             messages.map((msg: any) => (
@@ -285,7 +288,7 @@ function ChatContent() {
                       {msg.sender?.name}
                     </span>
                     <span className="text-[10px] text-muted-foreground">
-                      {new Date(msg.createdAt).toLocaleTimeString([], {
+                      {new Date(msg.createdAt).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
@@ -344,7 +347,7 @@ function ChatContent() {
           className="p-3 border-t border-border/40 bg-card/30 flex items-center gap-2"
         >
           <Input
-            placeholder={`Message #${activeChannel?.name || "channel"}...`}
+            placeholder={`${t("Message to #")}${activeChannel?.name || t("channel")}...`}
             value={messageInput}
             onChange={(e) => setMessageInput(e.target.value)}
             className="text-xs bg-background/60"
@@ -367,12 +370,12 @@ function ChatContent() {
           >
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2 text-base">
-                <Hash className="h-4 w-4 text-primary" /> Create New Channel
-              </DialogTitle>
+                <Hash className="h-4 w-4 text-primary" /><LocalizedText> Create New Channel
+              </LocalizedText></DialogTitle>
             </DialogHeader>
             <div className="space-y-3 py-3 text-xs">
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Channel Name</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Channel Name</LocalizedText></label>
                 <Input
                   placeholder="e.g. frontend-rfc"
                   value={newChannelName}
@@ -381,7 +384,7 @@ function ChatContent() {
                 />
               </div>
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Topic / Purpose</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Topic / Purpose</LocalizedText></label>
                 <Input
                   placeholder="What is this channel for?"
                   value={newChannelTopic}
@@ -390,12 +393,12 @@ function ChatContent() {
               </div>
             </div>
             <DialogFooter>
-              <Button type="button" variant="outline" size="sm" onClick={() => setNewChannelOpen(false)}>
+              <Button type="button" variant="outline" size="sm" onClick={() => setNewChannelOpen(false)}><LocalizedText>
                 Cancel
-              </Button>
-              <Button type="submit" size="sm" disabled={createChannelMutation.isPending}>
+              </LocalizedText></Button>
+              <Button type="submit" size="sm" disabled={createChannelMutation.isPending}><LocalizedText>
                 Create Channel
-              </Button>
+              </LocalizedText></Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -406,8 +409,9 @@ function ChatContent() {
 
 export default function ChatPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-xs text-muted-foreground">Loading chat...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-xs text-muted-foreground"><LocalizedText>Loading chat...</LocalizedText></div>}>
       <ChatContent />
     </Suspense>
   );
 }
+

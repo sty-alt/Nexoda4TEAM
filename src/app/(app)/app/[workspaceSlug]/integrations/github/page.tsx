@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -110,14 +111,14 @@ export default function GithubIntegrationPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">GitHub Integration</h1>
-            <Badge variant="success" className="text-xs">
+            <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>GitHub Integration</LocalizedText></h1>
+            <Badge variant="success" className="text-xs"><LocalizedText>
               Bi-directional Sync Active
-            </Badge>
+            </LocalizedText></Badge>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Connect repositories, link PRs and issues to internal tasks, and automate status transitions
-          </p>
+          </LocalizedText></p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -136,16 +137,16 @@ export default function GithubIntegrationPage() {
             onClick={() => setConnectOpen(true)}
             className="text-xs gap-1.5 h-8"
           >
-            <Plus className="h-4 w-4" /> Connect Repository
-          </Button>
+            <Plus className="h-4 w-4" /><LocalizedText> Connect Repository
+          </LocalizedText></Button>
         </div>
       </div>
 
       {/* Connected Repositories */}
       <div className="space-y-3">
         <h3 className="font-semibold text-sm flex items-center gap-2">
-          <GitBranch className="h-4 w-4 text-primary" /> Connected Repositories
-        </h3>
+          <GitBranch className="h-4 w-4 text-primary" /><LocalizedText> Connected Repositories
+        </LocalizedText></h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {repos.map((repo: any) => (
@@ -159,15 +160,15 @@ export default function GithubIntegrationPage() {
                     <h4 className="font-semibold text-xs text-foreground">
                       {repo.repoName}
                     </h4>
-                    <span className="text-[10px] text-muted-foreground font-mono">
-                      branch: {repo.defaultBranch}
+                    <span className="text-[10px] text-muted-foreground font-mono"><LocalizedText>
+                      branch: </LocalizedText>{repo.defaultBranch}
                     </span>
                   </div>
                 </div>
 
                 <span className="flex items-center gap-1 text-[11px] text-emerald-500 font-medium">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> Webhook Active
-                </span>
+                  <CheckCircle2 className="h-3.5 w-3.5" /><LocalizedText> Webhook Active
+                </LocalizedText></span>
               </div>
             </Card>
           ))}
@@ -177,8 +178,8 @@ export default function GithubIntegrationPage() {
       {/* Linked Pull Requests & Commits */}
       <div className="space-y-3 pt-2">
         <h3 className="font-semibold text-sm flex items-center gap-2">
-          <GitPullRequest className="h-4 w-4 text-primary" /> Active Linked Pull Requests
-        </h3>
+          <GitPullRequest className="h-4 w-4 text-primary" /><LocalizedText> Active Linked Pull Requests
+        </LocalizedText></h3>
 
         <div className="rounded-xl border border-border/40 overflow-hidden bg-card/60">
           <div className="divide-y divide-border/30">
@@ -199,8 +200,8 @@ export default function GithubIntegrationPage() {
                     {item.task && (
                       <div className="text-[11px] text-muted-foreground flex items-center gap-1.5 pt-0.5">
                         <Link2 className="h-3 w-3 text-primary" />
-                        <span>
-                          Linked to <strong className="text-foreground">{item.task.identifier}</strong>: {item.task.title}
+                        <span><LocalizedText>
+                          Linked to </LocalizedText><strong className="text-foreground">{item.task.identifier}</strong><LocalizedText>: </LocalizedText>{item.task.title}
                         </span>
                       </div>
                     )}
@@ -209,7 +210,7 @@ export default function GithubIntegrationPage() {
 
                 <div className="flex items-center gap-2 shrink-0">
                   <Badge variant="success" className="text-[10px]">
-                    {item.status || "OPEN"}
+                    <LocalizedText>{item.status || "OPEN"}</LocalizedText>
                   </Badge>
                   <Button asChild size="sm" variant="ghost" className="h-7 w-7 p-0">
                     <a href={item.url} target="_blank" rel="noopener noreferrer">
@@ -234,11 +235,11 @@ export default function GithubIntegrationPage() {
           >
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2 text-base">
-                <GitBranch className="h-4 w-4 text-primary" /> Connect GitHub Repository
-              </DialogTitle>
+                <GitBranch className="h-4 w-4 text-primary" /><LocalizedText> Connect GitHub Repository
+              </LocalizedText></DialogTitle>
             </DialogHeader>
             <div className="py-4 space-y-2 text-xs">
-              <label className="font-medium text-muted-foreground">Repository Name (org/repo)</label>
+              <label className="font-medium text-muted-foreground"><LocalizedText>Repository Name (org/repo)</LocalizedText></label>
               <Input
                 placeholder="e.g. acme/web-platform"
                 value={repoName}
@@ -248,12 +249,12 @@ export default function GithubIntegrationPage() {
               />
             </div>
             <DialogFooter>
-              <Button type="button" variant="outline" size="sm" onClick={() => setConnectOpen(false)}>
+              <Button type="button" variant="outline" size="sm" onClick={() => setConnectOpen(false)}><LocalizedText>
                 Cancel
-              </Button>
-              <Button type="submit" size="sm" disabled={connectMutation.isPending}>
+              </LocalizedText></Button>
+              <Button type="submit" size="sm" disabled={connectMutation.isPending}><LocalizedText>
                 Connect
-              </Button>
+              </LocalizedText></Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -261,3 +262,4 @@ export default function GithubIntegrationPage() {
     </div>
   );
 }
+

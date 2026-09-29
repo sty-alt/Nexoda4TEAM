@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -98,15 +99,15 @@ export default function ProjectsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Projects</h1>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Projects</LocalizedText></h1>
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Manage your product roadmaps, milestones, and deliverables
-          </p>
+          </LocalizedText></p>
         </div>
 
         <Button onClick={() => setCreateOpen(true)} size="sm" className="gap-1.5 text-xs">
-          <Plus className="h-4 w-4" /> New Project
-        </Button>
+          <Plus className="h-4 w-4" /><LocalizedText> New Project
+        </LocalizedText></Button>
       </div>
 
       {/* Project Cards Grid */}
@@ -119,13 +120,13 @@ export default function ProjectsPage() {
       ) : projects.length === 0 ? (
         <Card className="p-12 text-center border-dashed">
           <FolderGit2 className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-          <h3 className="text-base font-semibold">No projects yet</h3>
-          <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto">
+          <h3 className="text-base font-semibold"><LocalizedText>No projects yet</LocalizedText></h3>
+          <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto"><LocalizedText>
             Create your first project to start tracking issues, sprints, and roadmaps.
-          </p>
+          </LocalizedText></p>
           <Button onClick={() => setCreateOpen(true)} size="sm" className="mt-4 text-xs">
-            <Plus className="h-3.5 w-3.5 mr-1" /> Create Project
-          </Button>
+            <Plus className="h-3.5 w-3.5 mr-1" /><LocalizedText> Create Project
+          </LocalizedText></Button>
         </Card>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -158,8 +159,8 @@ export default function ProjectsPage() {
 
               <div className="space-y-2 pt-2 border-t border-border/40">
                 <div className="flex justify-between text-xs text-muted-foreground font-medium">
-                  <span>Progress ({p.completedTasks}/{p.totalTasks} issues)</span>
-                  <span>{p.percent}%</span>
+                  <span><LocalizedText>Progress (</LocalizedText>{p.completedTasks}<LocalizedText>/</LocalizedText>{p.totalTasks}<LocalizedText> issues)</LocalizedText></span>
+                  <span>{p.percent}<LocalizedText>%</LocalizedText></span>
                 </div>
                 <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
                   <div
@@ -179,13 +180,13 @@ export default function ProjectsPage() {
           <form onSubmit={handleCreate}>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <FolderGit2 className="h-5 w-5 text-primary" /> Create Project
-              </DialogTitle>
+                <FolderGit2 className="h-5 w-5 text-primary" /><LocalizedText> Create Project
+              </LocalizedText></DialogTitle>
             </DialogHeader>
 
             <div className="space-y-3 py-3 text-xs">
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Project Name</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Project Name</LocalizedText></label>
                 <Input
                   placeholder="e.g. Mobile App Companion"
                   value={name}
@@ -207,7 +208,7 @@ export default function ProjectsPage() {
 
               <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-1">
-                  <label className="font-medium text-muted-foreground">Key / Identifier</label>
+                  <label className="font-medium text-muted-foreground"><LocalizedText>Key / Identifier</LocalizedText></label>
                   <Input
                     placeholder="e.g. MOB"
                     value={identifier}
@@ -216,7 +217,7 @@ export default function ProjectsPage() {
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="font-medium text-muted-foreground">Accent Color</label>
+                  <label className="font-medium text-muted-foreground"><LocalizedText>Accent Color</LocalizedText></label>
                   <div className="flex items-center gap-2 h-9 px-2 rounded-md border border-input bg-background">
                     <input
                       type="color"
@@ -230,7 +231,7 @@ export default function ProjectsPage() {
               </div>
 
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Description</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Description</LocalizedText></label>
                 <Textarea
                   placeholder="Briefly describe what this project delivers..."
                   value={description}
@@ -241,9 +242,9 @@ export default function ProjectsPage() {
             </div>
 
             <DialogFooter>
-              <Button type="button" variant="outline" size="sm" onClick={() => setCreateOpen(false)}>
+              <Button type="button" variant="outline" size="sm" onClick={() => setCreateOpen(false)}><LocalizedText>
                 Cancel
-              </Button>
+              </LocalizedText></Button>
               <Button type="submit" size="sm" disabled={createMutation.isPending}>
                 {createMutation.isPending ? "Creating..." : "Create Project"}
               </Button>
@@ -254,3 +255,4 @@ export default function ProjectsPage() {
     </div>
   );
 }
+

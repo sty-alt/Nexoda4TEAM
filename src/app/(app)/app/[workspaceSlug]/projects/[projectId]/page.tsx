@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
@@ -24,6 +26,7 @@ import { useUIStore } from "@/store/useUIStore";
 import { formatDate } from "@/lib/utils";
 
 export default function SingleProjectPage() {
+  const { locale } = useLocale();
   const params = useParams();
   const workspaceSlug = params.workspaceSlug as string;
   const projectId = params.projectId as string;
@@ -54,9 +57,9 @@ export default function SingleProjectPage() {
 
   if (!project) {
     return (
-      <div className="text-center py-16 text-muted-foreground text-sm">
+      <div className="text-center py-16 text-muted-foreground text-sm"><LocalizedText>
         Project not found.
-      </div>
+      </LocalizedText></div>
     );
   }
 
@@ -91,8 +94,8 @@ export default function SingleProjectPage() {
             onClick={() => setQuickCreateTaskOpen(true)}
             className="text-xs gap-1.5"
           >
-            <Plus className="h-4 w-4" /> New Issue
-          </Button>
+            <Plus className="h-4 w-4" /><LocalizedText> New Issue
+          </LocalizedText></Button>
         </div>
       </div>
 
@@ -100,14 +103,14 @@ export default function SingleProjectPage() {
       <Tabs value={activeView} onValueChange={setActiveView} className="space-y-4">
         <TabsList className="bg-muted/40 p-1 border border-border/40">
           <TabsTrigger value="board" className="text-xs gap-1.5 data-[state=active]:bg-card">
-            <Kanban className="h-3.5 w-3.5" /> Board (Kanban)
-          </TabsTrigger>
+            <Kanban className="h-3.5 w-3.5" /><LocalizedText> Board (Kanban)
+          </LocalizedText></TabsTrigger>
           <TabsTrigger value="list" className="text-xs gap-1.5 data-[state=active]:bg-card">
-            <List className="h-3.5 w-3.5" /> List
-          </TabsTrigger>
+            <List className="h-3.5 w-3.5" /><LocalizedText> List
+          </LocalizedText></TabsTrigger>
           <TabsTrigger value="sprints" className="text-xs gap-1.5 data-[state=active]:bg-card">
-            <Flame className="h-3.5 w-3.5" /> Sprints ({project.sprints?.length || 0})
-          </TabsTrigger>
+            <Flame className="h-3.5 w-3.5" /><LocalizedText> Sprints (</LocalizedText>{project.sprints?.length || 0}<LocalizedText>)
+          </LocalizedText></TabsTrigger>
         </TabsList>
 
         <TabsContent value="board" className="m-0">
@@ -137,15 +140,15 @@ export default function SingleProjectPage() {
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-sm">{sprint.name}</span>
                   <Badge variant={sprint.status === "ACTIVE" ? "success" : "secondary"}>
-                    {sprint.status}
+                    <LocalizedText>{sprint.status}</LocalizedText>
                   </Badge>
                 </div>
                 <p className="text-xs text-muted-foreground">{sprint.goal || "No goal stated."}</p>
                 <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
                   <Calendar className="h-3.5 w-3.5" />
                   <span>
-                    {sprint.startDate ? formatDate(sprint.startDate) : "TBD"} -{" "}
-                    {sprint.endDate ? formatDate(sprint.endDate) : "TBD"}
+                    {sprint.startDate ? formatDate(sprint.startDate, locale) : <LocalizedText>TBD</LocalizedText>}<LocalizedText> -</LocalizedText>{" "}
+                    {sprint.endDate ? formatDate(sprint.endDate, locale) : <LocalizedText>TBD</LocalizedText>}
                   </span>
                 </div>
               </div>
@@ -156,3 +159,4 @@ export default function SingleProjectPage() {
     </div>
   );
 }
+

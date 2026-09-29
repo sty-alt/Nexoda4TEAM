@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -70,21 +71,21 @@ export default function LoginPage() {
             <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-md shadow-primary/30">
               <Layers className="h-4 w-4" />
             </div>
-            <span className="font-bold text-base tracking-tight">Nexoda4TEAM</span>
+            <span className="font-bold text-base tracking-tight"><LocalizedText>Nexoda4TEAM</LocalizedText></span>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight mt-4">Welcome back</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-2xl font-bold tracking-tight mt-4"><LocalizedText>Welcome back</LocalizedText></h1>
+          <p className="text-sm text-muted-foreground"><LocalizedText>
             Sign in to access your projects, docs, chat, and planner
-          </p>
+          </LocalizedText></p>
         </div>
 
         {/* Demo 1-Click Login Cards */}
         <div className="p-4 rounded-xl border border-border/80 bg-card/60 backdrop-blur-md shadow-sm space-y-2.5">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-              <Sparkles className="h-3.5 w-3.5 text-primary" /> Instant Demo Sign-in
-            </span>
-            <span className="text-[11px] text-muted-foreground">Password: demo123</span>
+              <Sparkles className="h-3.5 w-3.5 text-primary" /><LocalizedText> Instant Demo Sign-in
+            </LocalizedText></span>
+            <span className="text-[11px] text-muted-foreground"><LocalizedText>Password: demo123</LocalizedText></span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <button
@@ -92,30 +93,30 @@ export default function LoginPage() {
               onClick={() => demoLogin("alex@acme.com", "Alex (Tech Lead)")}
               className="p-2.5 rounded-lg border border-border/60 hover:border-primary/50 hover:bg-accent text-left transition-all group"
             >
-              <div className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors">
+              <div className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors"><LocalizedText>
                 Alex Vance
-              </div>
-              <div className="text-[11px] text-muted-foreground">Tech Lead</div>
+              </LocalizedText></div>
+              <div className="text-[11px] text-muted-foreground"><LocalizedText>Tech Lead</LocalizedText></div>
             </button>
             <button
               type="button"
               onClick={() => demoLogin("sarah@acme.com", "Sarah (Product Mgr)")}
               className="p-2.5 rounded-lg border border-border/60 hover:border-primary/50 hover:bg-accent text-left transition-all group"
             >
-              <div className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors">
+              <div className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors"><LocalizedText>
                 Sarah Chen
-              </div>
-              <div className="text-[11px] text-muted-foreground">Product Head</div>
+              </LocalizedText></div>
+              <div className="text-[11px] text-muted-foreground"><LocalizedText>Product Head</LocalizedText></div>
             </button>
             <button
               type="button"
               onClick={() => demoLogin("oleg@acme.com", "Oleg (Full Stack)")}
               className="p-2.5 rounded-lg border border-border/60 hover:border-primary/50 hover:bg-accent text-left transition-all group"
             >
-              <div className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors">
+              <div className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors"><LocalizedText>
                 Oleg Ivanov
-              </div>
-              <div className="text-[11px] text-muted-foreground">Full Stack</div>
+              </LocalizedText></div>
+              <div className="text-[11px] text-muted-foreground"><LocalizedText>Full Stack</LocalizedText></div>
             </button>
           </div>
         </div>
@@ -127,8 +128,8 @@ export default function LoginPage() {
         >
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
-              <Mail className="h-3.5 w-3.5" /> Work Email
-            </label>
+              <Mail className="h-3.5 w-3.5" /><LocalizedText> Work Email
+            </LocalizedText></label>
             <Input
               type="email"
               placeholder="alex@acme.com"
@@ -143,14 +144,14 @@ export default function LoginPage() {
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
-                <Lock className="h-3.5 w-3.5" /> Password
-              </label>
+                <Lock className="h-3.5 w-3.5" /><LocalizedText> Password
+              </LocalizedText></label>
               <Link
                 href="/forgot-password"
                 className="text-xs text-primary hover:underline"
-              >
+              ><LocalizedText>
                 Forgot?
-              </Link>
+              </LocalizedText></Link>
             </div>
             <Input
               type="password"
@@ -168,29 +169,30 @@ export default function LoginPage() {
             className="w-full font-medium"
             disabled={loading}
           >
-            {loading ? "Signing in..." : "Continue to Workspace"}
+            {loading ? <LocalizedText>Signing in...</LocalizedText> : <LocalizedText>Continue to Workspace</LocalizedText>}
             <ArrowRight className="h-4 w-4 ml-1.5" />
           </Button>
 
-          <div className="pt-2 text-center text-xs text-muted-foreground">
-            Don't have an account?{" "}
-            <Link href="/register" className="text-primary font-medium hover:underline">
+          <div className="pt-2 text-center text-xs text-muted-foreground"><LocalizedText>
+            Don't have an account?</LocalizedText>{" "}
+            <Link href="/register" className="text-primary font-medium hover:underline"><LocalizedText>
               Create workspace
-            </Link>
+            </LocalizedText></Link>
           </div>
         </form>
 
         {/* Security & Features Badge */}
         <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground/80">
           <span className="flex items-center gap-1">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" /> End-to-end Encrypted
-          </span>
-          <span>•</span>
-          <span>Role-Based Access</span>
-          <span>•</span>
-          <span>Real-time Sync</span>
+            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" /><LocalizedText> End-to-end Encrypted
+          </LocalizedText></span>
+          <span><LocalizedText>•</LocalizedText></span>
+          <span><LocalizedText>Role-Based Access</LocalizedText></span>
+          <span><LocalizedText>•</LocalizedText></span>
+          <span><LocalizedText>Real-time Sync</LocalizedText></span>
         </div>
       </div>
     </div>
   );
 }
+

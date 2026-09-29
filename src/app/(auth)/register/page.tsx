@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -69,12 +70,12 @@ export default function RegisterPage() {
             <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-md shadow-primary/30">
               <Layers className="h-4 w-4" />
             </div>
-            <span className="font-bold text-base tracking-tight">Nexoda4TEAM</span>
+            <span className="font-bold text-base tracking-tight"><LocalizedText>Nexoda4TEAM</LocalizedText></span>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight mt-4">Start your workspace</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-2xl font-bold tracking-tight mt-4"><LocalizedText>Start your workspace</LocalizedText></h1>
+          <p className="text-sm text-muted-foreground"><LocalizedText>
             Everything your team needs in one connected system
-          </p>
+          </LocalizedText></p>
         </div>
 
         <form
@@ -83,8 +84,8 @@ export default function RegisterPage() {
         >
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
-              <User className="h-3.5 w-3.5" /> Full Name
-            </label>
+              <User className="h-3.5 w-3.5" /><LocalizedText> Full Name
+            </LocalizedText></label>
             <Input
               type="text"
               placeholder="Elena Rostova"
@@ -98,8 +99,8 @@ export default function RegisterPage() {
 
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
-              <Mail className="h-3.5 w-3.5" /> Work Email
-            </label>
+              <Mail className="h-3.5 w-3.5" /><LocalizedText> Work Email
+            </LocalizedText></label>
             <Input
               type="email"
               placeholder="elena@company.com"
@@ -113,8 +114,8 @@ export default function RegisterPage() {
 
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
-              <Lock className="h-3.5 w-3.5" /> Password (min 6 characters)
-            </label>
+              <Lock className="h-3.5 w-3.5" /><LocalizedText> Password (min 6 characters)
+            </LocalizedText></label>
             <Input
               type="password"
               placeholder="••••••••"
@@ -128,8 +129,8 @@ export default function RegisterPage() {
 
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
-              <Building2 className="h-3.5 w-3.5" /> Workspace Name (Optional)
-            </label>
+              <Building2 className="h-3.5 w-3.5" /><LocalizedText> Workspace Name (Optional)
+            </LocalizedText></label>
             <Input
               type="text"
               placeholder="Acme Studio"
@@ -145,18 +146,19 @@ export default function RegisterPage() {
             className="w-full font-medium"
             disabled={loading}
           >
-            {loading ? "Creating..." : "Create Workspace"}
+            {loading ? <LocalizedText>Creating...</LocalizedText> : <LocalizedText>Create Workspace</LocalizedText>}
             <ArrowRight className="h-4 w-4 ml-1.5" />
           </Button>
 
-          <div className="pt-2 text-center text-xs text-muted-foreground">
-            Already have an account?{" "}
-            <Link href="/login" className="text-primary font-medium hover:underline">
+          <div className="pt-2 text-center text-xs text-muted-foreground"><LocalizedText>
+            Already have an account?</LocalizedText>{" "}
+            <Link href="/login" className="text-primary font-medium hover:underline"><LocalizedText>
               Sign in
-            </Link>
+            </LocalizedText></Link>
           </div>
         </form>
       </div>
     </div>
   );
 }
+

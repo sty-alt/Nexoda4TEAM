@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -80,19 +81,19 @@ export default function TeamPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">Team & Workload</h1>
+            <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Team & Workload</LocalizedText></h1>
             <Badge variant="default" className="text-xs">
-              {members.length} Colleagues
-            </Badge>
+              {members.length}<LocalizedText> Colleagues
+            </LocalizedText></Badge>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Directory, role-based access control, task assignments, and capacity analytics
-          </p>
+          </LocalizedText></p>
         </div>
 
         <Button onClick={() => setInviteOpen(true)} size="sm" className="text-xs gap-1.5 h-8">
-          <UserPlus className="h-4 w-4" /> Invite Colleague
-        </Button>
+          <UserPlus className="h-4 w-4" /><LocalizedText> Invite Colleague
+        </LocalizedText></Button>
       </div>
 
       {/* Team Members Grid */}
@@ -128,17 +129,17 @@ export default function TeamPage() {
                 </div>
 
                 <Badge variant="secondary" className="text-[10px] uppercase font-mono">
-                  {member.role}
+                  <LocalizedText>{member.role}</LocalizedText>
                 </Badge>
               </div>
 
               {/* Workload Capacity Bar */}
               <div className="space-y-1.5 pt-2 border-t border-border/40">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">Weekly Workload</span>
+                  <span className="text-muted-foreground"><LocalizedText>Weekly Workload</LocalizedText></span>
                   <span className="font-medium text-foreground">
-                    {member.totalEstimatedHours}h / 40h ({member.workloadPercent}%)
-                  </span>
+                    {member.totalEstimatedHours}<LocalizedText>h / 40h (</LocalizedText>{member.workloadPercent}<LocalizedText>%)
+                  </LocalizedText></span>
                 </div>
                 <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
                   <div
@@ -149,7 +150,7 @@ export default function TeamPage() {
                   />
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-0.5">
-                  <span>{member.activeTasksCount} active tasks</span>
+                  <span>{member.activeTasksCount}<LocalizedText> active tasks</LocalizedText></span>
                   <span className="text-primary font-medium">{member.department}</span>
                 </div>
               </div>
@@ -164,13 +165,13 @@ export default function TeamPage() {
           <form onSubmit={handleInvite}>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <UserPlus className="h-5 w-5 text-primary" /> Invite Colleague
-              </DialogTitle>
+                <UserPlus className="h-5 w-5 text-primary" /><LocalizedText> Invite Colleague
+              </LocalizedText></DialogTitle>
             </DialogHeader>
 
             <div className="space-y-3 py-3 text-xs">
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Work Email</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Work Email</LocalizedText></label>
                 <Input
                   type="email"
                   placeholder="colleague@company.com"
@@ -183,43 +184,43 @@ export default function TeamPage() {
 
               <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-1">
-                  <label className="font-medium text-muted-foreground">Role</label>
+                  <label className="font-medium text-muted-foreground"><LocalizedText>Role</LocalizedText></label>
                   <select
                     value={inviteRole}
                     onChange={(e) => setInviteRole(e.target.value)}
                     className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                   >
-                    <option value="MEMBER">Member</option>
-                    <option value="MANAGER">Manager</option>
-                    <option value="ADMIN">Admin</option>
-                    <option value="GUEST">Guest</option>
+                    <option value="MEMBER"><LocalizedText>Member</LocalizedText></option>
+                    <option value="MANAGER"><LocalizedText>Manager</LocalizedText></option>
+                    <option value="ADMIN"><LocalizedText>Admin</LocalizedText></option>
+                    <option value="GUEST"><LocalizedText>Guest</LocalizedText></option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-medium text-muted-foreground">Department</label>
+                  <label className="font-medium text-muted-foreground"><LocalizedText>Department</LocalizedText></label>
                   <select
                     value={inviteDepartment}
                     onChange={(e) => setInviteDepartment(e.target.value)}
                     className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                   >
-                    <option value="Engineering">Engineering</option>
-                    <option value="Product">Product</option>
-                    <option value="Design">Design</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Operations">Operations</option>
+                    <option value="Engineering"><LocalizedText>Engineering</LocalizedText></option>
+                    <option value="Product"><LocalizedText>Product</LocalizedText></option>
+                    <option value="Design"><LocalizedText>Design</LocalizedText></option>
+                    <option value="Marketing"><LocalizedText>Marketing</LocalizedText></option>
+                    <option value="Operations"><LocalizedText>Operations</LocalizedText></option>
                   </select>
                 </div>
               </div>
             </div>
 
             <DialogFooter>
-              <Button type="button" variant="outline" size="sm" onClick={() => setInviteOpen(false)}>
+              <Button type="button" variant="outline" size="sm" onClick={() => setInviteOpen(false)}><LocalizedText>
                 Cancel
-              </Button>
-              <Button type="submit" size="sm">
+              </LocalizedText></Button>
+              <Button type="submit" size="sm"><LocalizedText>
                 Send Invite
-              </Button>
+              </LocalizedText></Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -227,3 +228,4 @@ export default function TeamPage() {
     </div>
   );
 }
+

@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useUIStore } from "@/store/useUIStore";
 import {
@@ -85,8 +86,8 @@ export function QuickCreateTaskDialog({
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-base">
-              <CheckSquare className="h-4 w-4 text-primary" /> Create New Issue
-            </DialogTitle>
+              <CheckSquare className="h-4 w-4 text-primary" /><LocalizedText> Create New Issue
+            </LocalizedText></DialogTitle>
           </DialogHeader>
 
           <div className="space-y-3 py-3">
@@ -112,7 +113,7 @@ export function QuickCreateTaskDialog({
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs">
               <div className="space-y-1">
-                <label className="text-muted-foreground font-medium">Project</label>
+                <label className="text-muted-foreground font-medium"><LocalizedText>Project</LocalizedText></label>
                 <select
                   value={projectId}
                   onChange={(e) => setProjectId(e.target.value)}
@@ -120,49 +121,49 @@ export function QuickCreateTaskDialog({
                 >
                   {projects.map((p) => (
                     <option key={p.id} value={p.id}>
-                      {p.identifier} - {p.name}
+                      {p.identifier}<LocalizedText> - </LocalizedText>{p.name}
                     </option>
                   ))}
                 </select>
               </div>
 
               <div className="space-y-1">
-                <label className="text-muted-foreground font-medium">Status</label>
+                <label className="text-muted-foreground font-medium"><LocalizedText>Status</LocalizedText></label>
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
                   className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                 >
-                  <option value="BACKLOG">Backlog</option>
-                  <option value="TODO">Todo</option>
-                  <option value="IN_PROGRESS">In Progress</option>
-                  <option value="IN_REVIEW">In Review</option>
-                  <option value="DONE">Done</option>
+                  <option value="BACKLOG"><LocalizedText>Backlog</LocalizedText></option>
+                  <option value="TODO"><LocalizedText>Todo</LocalizedText></option>
+                  <option value="IN_PROGRESS"><LocalizedText>In Progress</LocalizedText></option>
+                  <option value="IN_REVIEW"><LocalizedText>In Review</LocalizedText></option>
+                  <option value="DONE"><LocalizedText>Done</LocalizedText></option>
                 </select>
               </div>
 
               <div className="space-y-1">
-                <label className="text-muted-foreground font-medium">Priority</label>
+                <label className="text-muted-foreground font-medium"><LocalizedText>Priority</LocalizedText></label>
                 <select
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
                   className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                 >
-                  <option value="URGENT">Urgent</option>
-                  <option value="HIGH">High</option>
-                  <option value="MEDIUM">Medium</option>
-                  <option value="LOW">Low</option>
+                  <option value="URGENT"><LocalizedText>Urgent</LocalizedText></option>
+                  <option value="HIGH"><LocalizedText>High</LocalizedText></option>
+                  <option value="MEDIUM"><LocalizedText>Medium</LocalizedText></option>
+                  <option value="LOW"><LocalizedText>Low</LocalizedText></option>
                 </select>
               </div>
 
               <div className="space-y-1">
-                <label className="text-muted-foreground font-medium">Assignee</label>
+                <label className="text-muted-foreground font-medium"><LocalizedText>Assignee</LocalizedText></label>
                 <select
                   value={assigneeId}
                   onChange={(e) => setAssigneeId(e.target.value)}
                   className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                 >
-                  <option value="">Unassigned</option>
+                  <option value=""><LocalizedText>Unassigned</LocalizedText></option>
                   {members.map((m) => (
                     <option key={m.id} value={m.id}>
                       {m.name}
@@ -179,11 +180,11 @@ export function QuickCreateTaskDialog({
               variant="outline"
               size="sm"
               onClick={() => setQuickCreateTaskOpen(false)}
-            >
+            ><LocalizedText>
               Cancel
-            </Button>
+            </LocalizedText></Button>
             <Button type="submit" size="sm" disabled={loading}>
-              {loading ? "Creating..." : "Create Issue"}
+              {loading ? <LocalizedText>Creating...</LocalizedText> : <LocalizedText>Create Issue</LocalizedText>}
             </Button>
           </DialogFooter>
         </form>
@@ -191,3 +192,4 @@ export function QuickCreateTaskDialog({
     </Dialog>
   );
 }
+

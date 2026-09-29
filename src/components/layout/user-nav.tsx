@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -85,25 +86,25 @@ export function UserNav({ user, workspaceSlug }: UserNavProps) {
           className="cursor-pointer gap-2 py-1.5 text-xs"
         >
           <User className="h-4 w-4 text-muted-foreground" />
-          <span>Profile & Account</span>
+          <span><LocalizedText>Profile & Account</LocalizedText></span>
         </DropdownMenuItem>
 
         <DropdownMenuSub>
           <DropdownMenuSubTrigger className="cursor-pointer gap-2 py-1.5 text-xs">
             <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-muted-foreground" />
             <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-muted-foreground" />
-            <span className="ml-1">Theme</span>
+            <span className="ml-1"><LocalizedText>Theme</LocalizedText></span>
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             <DropdownMenuItem onClick={() => setTheme("light")} className="text-xs">
-              <Sun className="h-3.5 w-3.5 mr-2" /> Light
-            </DropdownMenuItem>
+              <Sun className="h-3.5 w-3.5 mr-2" /><LocalizedText> Light
+            </LocalizedText></DropdownMenuItem>
             <DropdownMenuItem onClick={() => setTheme("dark")} className="text-xs">
-              <Moon className="h-3.5 w-3.5 mr-2" /> Dark
-            </DropdownMenuItem>
+              <Moon className="h-3.5 w-3.5 mr-2" /><LocalizedText> Dark
+            </LocalizedText></DropdownMenuItem>
             <DropdownMenuItem onClick={() => setTheme("system")} className="text-xs">
-              <Laptop className="h-3.5 w-3.5 mr-2" /> System
-            </DropdownMenuItem>
+              <Laptop className="h-3.5 w-3.5 mr-2" /><LocalizedText> System
+            </LocalizedText></DropdownMenuItem>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
 
@@ -112,8 +113,8 @@ export function UserNav({ user, workspaceSlug }: UserNavProps) {
           className="cursor-pointer gap-2 py-1.5 text-xs"
         >
           <Keyboard className="h-4 w-4 text-muted-foreground" />
-          <span>Keyboard Shortcuts</span>
-          <span className="ml-auto text-[10px] text-muted-foreground font-mono">?</span>
+          <span><LocalizedText>Keyboard Shortcuts</LocalizedText></span>
+          <span className="ml-auto text-[10px] text-muted-foreground font-mono"><LocalizedText>?</LocalizedText></span>
         </DropdownMenuItem>
 
         <DropdownMenuItem
@@ -121,7 +122,7 @@ export function UserNav({ user, workspaceSlug }: UserNavProps) {
           className="cursor-pointer gap-2 py-1.5 text-xs"
         >
           <Shield className="h-4 w-4 text-muted-foreground" />
-          <span>Admin & Audit Logs</span>
+          <span><LocalizedText>Admin & Audit Logs</LocalizedText></span>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
@@ -130,9 +131,10 @@ export function UserNav({ user, workspaceSlug }: UserNavProps) {
           className="cursor-pointer gap-2 py-1.5 text-xs text-destructive focus:text-destructive"
         >
           <LogOut className="h-4 w-4" />
-          <span>Sign Out</span>
+          <span><LocalizedText>Sign Out</LocalizedText></span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
+

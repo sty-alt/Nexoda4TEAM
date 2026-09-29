@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState, useMemo } from "react";
 import {
   DragDropContext,
@@ -184,13 +185,13 @@ export function KanbanBoard({
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
       case "URGENT":
-        return <Badge variant="urgent">Urgent</Badge>;
+        return <Badge variant="urgent"><LocalizedText>Urgent</LocalizedText></Badge>;
       case "HIGH":
-        return <Badge variant="warning">High</Badge>;
+        return <Badge variant="warning"><LocalizedText>High</LocalizedText></Badge>;
       case "MEDIUM":
-        return <Badge variant="default">Med</Badge>;
+        return <Badge variant="default"><LocalizedText>Med</LocalizedText></Badge>;
       default:
-        return <Badge variant="secondary">Low</Badge>;
+        return <Badge variant="secondary"><LocalizedText>Low</LocalizedText></Badge>;
     }
   };
 
@@ -215,11 +216,11 @@ export function KanbanBoard({
             onChange={(e) => setPriorityFilter(e.target.value)}
             className="h-8 rounded-md border border-border/60 bg-background px-2 text-xs text-muted-foreground"
           >
-            <option value="ALL">All Priorities</option>
-            <option value="URGENT">Urgent</option>
-            <option value="HIGH">High</option>
-            <option value="MEDIUM">Medium</option>
-            <option value="LOW">Low</option>
+            <option value="ALL"><LocalizedText>All Priorities</LocalizedText></option>
+            <option value="URGENT"><LocalizedText>Urgent</LocalizedText></option>
+            <option value="HIGH"><LocalizedText>High</LocalizedText></option>
+            <option value="MEDIUM"><LocalizedText>Medium</LocalizedText></option>
+            <option value="LOW"><LocalizedText>Low</LocalizedText></option>
           </select>
 
           <select
@@ -227,7 +228,7 @@ export function KanbanBoard({
             onChange={(e) => setAssigneeFilter(e.target.value)}
             className="h-8 rounded-md border border-border/60 bg-background px-2 text-xs text-muted-foreground"
           >
-            <option value="ALL">All Assignees</option>
+            <option value="ALL"><LocalizedText>All Assignees</LocalizedText></option>
             {members.map((m) => (
               <option key={m.id} value={m.id}>
                 {m.name}
@@ -255,7 +256,7 @@ export function KanbanBoard({
                       style={{ backgroundColor: col.color }}
                     />
                     <span className="font-semibold text-xs text-foreground">
-                      {col.label}
+                      <LocalizedText>{col.label}</LocalizedText>
                     </span>
                     <span className="text-[11px] font-mono px-1.5 py-0.2 rounded-full bg-muted text-muted-foreground">
                       {colTasks.length}
@@ -294,16 +295,16 @@ export function KanbanBoard({
                         variant="ghost"
                         onClick={() => setQuickAddColumn(null)}
                         className="h-6 text-[10px] px-2"
-                      >
+                      ><LocalizedText>
                         Cancel
-                      </Button>
+                      </LocalizedText></Button>
                       <Button
                         size="sm"
                         onClick={() => handleQuickAdd(col.id)}
                         className="h-6 text-[10px] px-2"
-                      >
+                      ><LocalizedText>
                         Add
-                      </Button>
+                      </LocalizedText></Button>
                     </div>
                   </div>
                 )}
@@ -361,8 +362,8 @@ export function KanbanBoard({
                                       {
                                         task.subtasks.filter((s) => s.completed)
                                           .length
-                                      }
-                                      /{task.subtasks.length}
+                                      }<LocalizedText>
+                                      /</LocalizedText>{task.subtasks.length}
                                     </span>
                                   )}
                                   {task._count && task._count.comments > 0 && (
@@ -380,9 +381,9 @@ export function KanbanBoard({
                                     size="sm"
                                   />
                                 ) : (
-                                  <span className="h-5 w-5 rounded-full border border-dashed border-muted-foreground/40 flex items-center justify-center text-[10px]">
+                                  <span className="h-5 w-5 rounded-full border border-dashed border-muted-foreground/40 flex items-center justify-center text-[10px]"><LocalizedText>
                                     ?
-                                  </span>
+                                  </LocalizedText></span>
                                 )}
                               </div>
                             </div>
@@ -409,3 +410,4 @@ export function KanbanBoard({
     </div>
   );
 }
+

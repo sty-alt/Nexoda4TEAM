@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -22,6 +24,7 @@ import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function InboxPage() {
+  const { locale } = useLocale();
   const params = useParams();
   const workspaceSlug = params.workspaceSlug as string;
   const queryClient = useQueryClient();
@@ -78,14 +81,14 @@ export default function InboxPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">Unified Inbox</h1>
+            <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Unified Inbox</LocalizedText></h1>
             <Badge variant="default" className="text-xs">
-              {notifications.filter((n: any) => !n.isRead).length} unread
-            </Badge>
+              {notifications.filter((n: any) => !n.isRead).length}<LocalizedText> unread
+            </LocalizedText></Badge>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Aggregated notifications, task assignments, mentions, and deadline alerts
-          </p>
+          </LocalizedText></p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -95,8 +98,8 @@ export default function InboxPage() {
             onClick={() => markAllAsReadMutation.mutate()}
             className="text-xs gap-1.5 h-8"
           >
-            <CheckCheck className="h-3.5 w-3.5" /> Mark All as Read
-          </Button>
+            <CheckCheck className="h-3.5 w-3.5" /><LocalizedText> Mark All as Read
+          </LocalizedText></Button>
         </div>
       </div>
 
@@ -109,9 +112,9 @@ export default function InboxPage() {
               ? "bg-primary/10 text-primary"
               : "text-muted-foreground hover:text-foreground"
           }`}
-        >
+        ><LocalizedText>
           All
-        </button>
+        </LocalizedText></button>
         <button
           onClick={() => setFilterTab("unread")}
           className={`px-3 py-1 rounded-md font-medium transition-colors ${
@@ -119,9 +122,9 @@ export default function InboxPage() {
               ? "bg-primary/10 text-primary"
               : "text-muted-foreground hover:text-foreground"
           }`}
-        >
+        ><LocalizedText>
           Unread
-        </button>
+        </LocalizedText></button>
         <button
           onClick={() => setFilterTab("tasks")}
           className={`px-3 py-1 rounded-md font-medium transition-colors ${
@@ -129,9 +132,9 @@ export default function InboxPage() {
               ? "bg-primary/10 text-primary"
               : "text-muted-foreground hover:text-foreground"
           }`}
-        >
+        ><LocalizedText>
           Assignments
-        </button>
+        </LocalizedText></button>
         <button
           onClick={() => setFilterTab("mentions")}
           className={`px-3 py-1 rounded-md font-medium transition-colors ${
@@ -139,9 +142,9 @@ export default function InboxPage() {
               ? "bg-primary/10 text-primary"
               : "text-muted-foreground hover:text-foreground"
           }`}
-        >
+        ><LocalizedText>
           Mentions
-        </button>
+        </LocalizedText></button>
       </div>
 
       {/* Notifications List */}
@@ -155,10 +158,10 @@ export default function InboxPage() {
         ) : filtered.length === 0 ? (
           <div className="text-center py-16 rounded-xl border border-dashed border-border/60 bg-card/30 p-8 space-y-2">
             <Inbox className="h-10 w-10 text-muted-foreground/60 mx-auto" />
-            <h3 className="font-semibold text-sm">Inbox Zero</h3>
-            <p className="text-xs text-muted-foreground">
+            <h3 className="font-semibold text-sm"><LocalizedText>Inbox Zero</LocalizedText></h3>
+            <p className="text-xs text-muted-foreground"><LocalizedText>
               You are completely caught up! No unread notifications or alerts.
-            </p>
+            </LocalizedText></p>
           </div>
         ) : (
           filtered.map((item: any) => (
@@ -187,15 +190,15 @@ export default function InboxPage() {
                     {item.message}
                   </p>
                   <span className="text-[10px] text-muted-foreground/70 block pt-0.5">
-                    {formatDate(item.createdAt)}
+                    {formatDate(item.createdAt, locale)}
                   </span>
                 </div>
               </div>
 
               {item.link && (
                 <Button asChild size="sm" variant="ghost" className="text-xs shrink-0 gap-1 h-7">
-                  <Link href={item.link}>
-                    View <ArrowRight className="h-3 w-3" />
+                  <Link href={item.link}><LocalizedText>
+                    View </LocalizedText><ArrowRight className="h-3 w-3" />
                   </Link>
                 </Button>
               )}
@@ -206,3 +209,4 @@ export default function InboxPage() {
     </div>
   );
 }
+

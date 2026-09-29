@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -83,7 +85,7 @@ export function Topbar({
                     {crumb.label}
                   </span>
                 )}
-                {!isLast && <span className="text-border">/</span>}
+                {!isLast && <span className="text-border"><LocalizedText>/</LocalizedText></span>}
               </React.Fragment>
             );
           })}
@@ -117,7 +119,7 @@ export function Topbar({
             title="Start time tracking"
           >
             <Clock className="h-3.5 w-3.5" />
-            <span>Track Time</span>
+            <span><LocalizedText>Track Time</LocalizedText></span>
           </button>
         )}
 
@@ -128,10 +130,10 @@ export function Topbar({
           className="h-7 px-2.5 text-xs gap-1 shadow-sm font-medium"
         >
           <Plus className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">New Task</span>
-          <kbd className="hidden lg:inline text-[9px] opacity-70 bg-primary-foreground/20 px-1 py-0.2 rounded ml-0.5">
+          <span className="hidden sm:inline"><LocalizedText>New Task</LocalizedText></span>
+          <kbd className="hidden lg:inline text-[9px] opacity-70 bg-primary-foreground/20 px-1 py-0.2 rounded ml-0.5"><LocalizedText>
             C
-          </kbd>
+          </LocalizedText></kbd>
         </Button>
 
         {/* Realtime Live Status Pill */}
@@ -140,7 +142,7 @@ export function Topbar({
           title="Realtime sync active via SSE"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Live Sync</span>
+          <span><LocalizedText>Live Sync</LocalizedText></span>
         </div>
 
         {/* Notifications Bell Dropdown */}
@@ -155,21 +157,21 @@ export function Topbar({
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-80" align="end">
             <div className="flex items-center justify-between p-3 border-b border-border/40">
-              <span className="font-semibold text-xs">Notifications</span>
+              <span className="font-semibold text-xs"><LocalizedText>Notifications</LocalizedText></span>
               {unreadCount > 0 && (
                 <button
                   onClick={markAllAsRead}
                   className="text-[11px] text-primary hover:underline flex items-center gap-1"
                 >
-                  <CheckCheck className="h-3 w-3" /> Mark all read
-                </button>
+                  <CheckCheck className="h-3 w-3" /><LocalizedText> Mark all read
+                </LocalizedText></button>
               )}
             </div>
             <div className="max-h-72 overflow-y-auto divide-y divide-border/30">
               {unreadList.length === 0 ? (
-                <div className="p-4 text-center text-xs text-muted-foreground">
+                <div className="p-4 text-center text-xs text-muted-foreground"><LocalizedText>
                   No notifications yet
-                </div>
+                </LocalizedText></div>
               ) : (
                 unreadList.map((notif) => (
                   <div
@@ -188,14 +190,15 @@ export function Topbar({
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild className="p-2 text-center text-xs text-primary cursor-pointer justify-center">
-              <Link href={`/app/${workspaceSlug}/inbox`}>
-                View all in Inbox <ArrowRight className="h-3 w-3 ml-1" />
+              <Link href={`/app/${workspaceSlug}/inbox`}><LocalizedText>
+                View all in Inbox </LocalizedText><ArrowRight className="h-3 w-3 ml-1" />
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
         {/* Shortcuts trigger */}
+        <LanguageSwitcher className="shrink-0" />
         <button
           onClick={() => setShortcutsModalOpen(true)}
           className="hidden sm:flex h-8 w-8 rounded-md hover:bg-accent items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
@@ -207,3 +210,4 @@ export function Topbar({
     </header>
   );
 }
+

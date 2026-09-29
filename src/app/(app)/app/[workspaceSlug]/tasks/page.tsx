@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState, Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
@@ -57,21 +58,21 @@ function TasksContent() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">All Tasks & Issues</h1>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>All Tasks & Issues</LocalizedText></h1>
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Cross-project unified issue queue with drag & drop Kanban and List views
-          </p>
+          </LocalizedText></p>
         </div>
 
         <div className="flex items-center gap-2">
           <Tabs value={activeView} onValueChange={setActiveView}>
             <TabsList className="h-8 bg-muted/40 p-1 border border-border/40">
               <TabsTrigger value="board" className="text-xs gap-1.5 h-6">
-                <Kanban className="h-3 w-3" /> Board
-              </TabsTrigger>
+                <Kanban className="h-3 w-3" /><LocalizedText> Board
+              </LocalizedText></TabsTrigger>
               <TabsTrigger value="list" className="text-xs gap-1.5 h-6">
-                <List className="h-3 w-3" /> List
-              </TabsTrigger>
+                <List className="h-3 w-3" /><LocalizedText> List
+              </LocalizedText></TabsTrigger>
             </TabsList>
           </Tabs>
 
@@ -80,8 +81,8 @@ function TasksContent() {
             onClick={() => setQuickCreateTaskOpen(true)}
             className="text-xs gap-1.5 h-8"
           >
-            <Plus className="h-4 w-4" /> New Task
-          </Button>
+            <Plus className="h-4 w-4" /><LocalizedText> New Task
+          </LocalizedText></Button>
         </div>
       </div>
 
@@ -127,8 +128,9 @@ function TasksContent() {
 
 export default function AllTasksPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-xs text-muted-foreground">Loading tasks...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-xs text-muted-foreground"><LocalizedText>Loading tasks...</LocalizedText></div>}>
       <TasksContent />
     </Suspense>
   );
 }
+

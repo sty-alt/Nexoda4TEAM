@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -135,32 +137,33 @@ export default function LandingPage() {
       <header className="fixed left-0 right-0 top-0 z-50 h-16 border-b border-white/[0.06] bg-[#090a0c]/40 px-4 sm:px-8 flex items-center justify-between backdrop-blur-sm">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center font-black text-white text-xs shadow-md shadow-indigo-500/30">
+            <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center font-black text-white text-xs shadow-md shadow-indigo-500/30"><LocalizedText>
               N
-            </div>
-            <span className="font-bold text-sm tracking-tight text-white">Nexoda4TEAM</span>
+            </LocalizedText></div>
+            <span className="font-bold text-sm tracking-tight text-white"><LocalizedText>Nexoda4TEAM</LocalizedText></span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-xs text-zinc-400 font-medium">
-            <a href="#productivity" className="hover:text-white transition-colors">
+            <a href="#productivity" className="hover:text-white transition-colors"><LocalizedText>
               Productivity
-            </a>
-            <a href="#virtual-office" className="hover:text-white transition-colors">
+            </LocalizedText></a>
+            <a href="#virtual-office" className="hover:text-white transition-colors"><LocalizedText>
               Virtual Office
-            </a>
-            <a href="#github" className="hover:text-white transition-colors">
+            </LocalizedText></a>
+            <a href="#github" className="hover:text-white transition-colors"><LocalizedText>
               GitHub Sync
-            </a>
-            <a href="#pricing" className="hover:text-white transition-colors">
+            </LocalizedText></a>
+            <a href="#pricing" className="hover:text-white transition-colors"><LocalizedText>
               Pricing
-            </a>
-            <a href="#faq" className="hover:text-white transition-colors">
+            </LocalizedText></a>
+            <a href="#faq" className="hover:text-white transition-colors"><LocalizedText>
               FAQ
-            </a>
+            </LocalizedText></a>
           </nav>
         </div>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher className="border-white/10 bg-white/[0.03]" />
           <a
             href="https://github.com"
             target="_blank"
@@ -168,14 +171,14 @@ export default function LandingPage() {
             className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs text-zinc-300 hover:text-white hover:border-white/20 transition-colors"
           >
             <Star className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
-            <span>Star Us</span>
+            <span><LocalizedText>Star Us</LocalizedText></span>
           </a>
 
           <Button asChild variant="ghost" size="sm" className="text-xs text-zinc-300 hover:text-white hover:bg-white/[0.06] h-8">
-            <Link href="/login">SIGN IN</Link>
+            <Link href="/login"><LocalizedText>SIGN IN</LocalizedText></Link>
           </Button>
           <Button asChild size="sm" className="text-xs font-semibold bg-white text-black hover:bg-zinc-200 h-8 rounded-full px-4">
-            <Link href="/login">SIGN UP</Link>
+            <Link href="/login"><LocalizedText>SIGN UP</LocalizedText></Link>
           </Button>
         </div>
       </header>
@@ -184,13 +187,13 @@ export default function LandingPage() {
       <section className="hero relative overflow-hidden bg-[#090a0c] pt-[92px] min-h-[780px] md:pt-24 lg:h-[1078px] lg:min-h-0 lg:pt-28 xl:h-[1438px] xl:pt-[184px]">
         <div className="relative mx-auto flex h-full max-w-[1280px] flex-col px-8">
           {/* Title — gradient text matching Huly: white→lavender→pink-white */}
-          <h1 className="relative z-30 max-w-[616px] bg-gradient-to-br from-white from-[30%] via-[#d5d8f6] via-[80%] to-[#fdf7fe] bg-clip-text font-semibold text-[84px] leading-[0.9] tracking-tight text-transparent lg:max-w-[528px] lg:text-[72px] md:text-[56px] sm:text-[32px]">
+          <h1 className="relative z-30 max-w-[616px] bg-gradient-to-br from-white from-[30%] via-[#d5d8f6] via-[80%] to-[#fdf7fe] bg-clip-text font-semibold text-[84px] leading-[0.9] tracking-tight text-transparent lg:max-w-[528px] lg:text-[72px] md:text-[56px] sm:text-[32px]"><LocalizedText>
             Everything App for your teams
-          </h1>
+          </LocalizedText></h1>
 
-          <p className="relative z-30 mt-5 max-w-md text-[18px] leading-snug tracking-tight text-white/60 lg:mt-4 md:text-[16px] sm:text-[15px]">
+          <p className="relative z-30 mt-5 max-w-md text-[18px] leading-snug tracking-tight text-white/60 lg:mt-4 md:text-[16px] sm:text-[15px]"><LocalizedText>
             Nexoda4TEAM, an open-source platform, brings project management, documentation, planning, and team communication together.
-          </p>
+          </LocalizedText></p>
 
           {/* CTA Button — exact Huly anatomy: bg-[#d1d1d1], dual radial flare layers, text-[#5A250A] */}
           <div className="mt-11 lg:mt-9 md:mt-7 sm:mt-5">
@@ -209,7 +212,7 @@ export default function LandingPage() {
                   <div className="absolute top-1/2 h-[121px] w-[121px] -translate-y-1/2 bg-[radial-gradient(50%_50%_at_50%_50%,#FFFFF5_3.5%,#FFAA81_26.5%,#FFDA9F_37.5%,rgba(255,170,129,0.50)_49%,rgba(210,106,58,0.00)_92.5%)]" />
                   <div className="absolute top-1/2 h-[103px] w-[204px] -translate-y-1/2 bg-[radial-gradient(43.3%_44.23%_at_50%_49.51%,#FFFFF7_29%,#FFFACD_48.5%,#F4D2BF_60.71%,rgba(214,211,210,0.00)_100%)] blur-[5px]" />
                 </div>
-                <span className="text-[12px] font-bold uppercase tracking-tight text-[#5A250A]">See in Action</span>
+                <span className="text-[12px] font-bold uppercase tracking-tight text-[#5A250A]"><LocalizedText>See in Action</LocalizedText></span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 9" className="ml-1 h-[9px] w-[17px] text-[#5A250A]">
                   <path fill="currentColor" fillRule="evenodd" d="m12.495 0 4.495 4.495-4.495 4.495-.99-.99 2.805-2.805H0v-1.4h14.31L11.505.99z" clipRule="evenodd" />
                 </svg>
@@ -242,19 +245,19 @@ export default function LandingPage() {
                   <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
                 </div>
                 <div className="flex items-center gap-2 text-[11px] text-zinc-400 pl-3 border-l border-white/[0.08]">
-                  <span className="font-semibold text-white">Nexoda4TEAM</span>
-                  <span>/</span>
-                  <span>Acme Platform</span>
-                  <span>/</span>
-                  <span className="text-indigo-400">Issues</span>
+                  <span className="font-semibold text-white"><LocalizedText>Nexoda4TEAM</LocalizedText></span>
+                  <span><LocalizedText>/</LocalizedText></span>
+                  <span><LocalizedText>Acme Platform</LocalizedText></span>
+                  <span><LocalizedText>/</LocalizedText></span>
+                  <span className="text-indigo-400"><LocalizedText>Issues</LocalizedText></span>
                 </div>
               </div>
 
               <div className="flex items-center gap-2 text-[11px] text-zinc-400">
                 <span className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" /><LocalizedText>
                   Live Sync
-                </span>
+                </LocalizedText></span>
               </div>
             </div>
 
@@ -264,41 +267,41 @@ export default function LandingPage() {
               <div className="col-span-12 sm:col-span-3 border-r border-white/[0.08] p-3 space-y-4 bg-[#060609]/60">
                 <div className="flex items-center justify-between px-2 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] text-zinc-400 text-xs">
                   <Search className="h-3.5 w-3.5" />
-                  <span className="flex-1 ml-2 text-[11px]">Search...</span>
-                  <kbd className="font-mono text-[9px] bg-white/[0.06] px-1 rounded">⌘K</kbd>
+                  <span className="flex-1 ml-2 text-[11px]"><LocalizedText>Search...</LocalizedText></span>
+                  <kbd className="font-mono text-[9px] bg-white/[0.06] px-1 rounded"><LocalizedText>⌘K</LocalizedText></kbd>
                 </div>
 
                 <div className="space-y-1">
-                  <div className="px-2 text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">
+                  <div className="px-2 text-[10px] font-semibold text-zinc-500 uppercase tracking-wider"><LocalizedText>
                     My Workspace
-                  </div>
+                  </LocalizedText></div>
                   <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-white/[0.06] text-white font-medium">
                     <Kanban className="h-3.5 w-3.5 text-indigo-400" />
-                    <span>My Issues</span>
-                    <span className="ml-auto text-[10px] font-mono text-zinc-400">12</span>
+                    <span><LocalizedText>My Issues</LocalizedText></span>
+                    <span className="ml-auto text-[10px] font-mono text-zinc-400"><LocalizedText>12</LocalizedText></span>
                   </div>
                   <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-zinc-400 hover:text-white">
                     <CheckSquare className="h-3.5 w-3.5" />
-                    <span>All Issues</span>
-                    <span className="ml-auto text-[10px] font-mono text-zinc-500">48</span>
+                    <span><LocalizedText>All Issues</LocalizedText></span>
+                    <span className="ml-auto text-[10px] font-mono text-zinc-500"><LocalizedText>48</LocalizedText></span>
                   </div>
                 </div>
 
                 <div className="space-y-1 pt-2 border-t border-white/[0.06]">
-                  <div className="px-2 text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">
+                  <div className="px-2 text-[10px] font-semibold text-zinc-500 uppercase tracking-wider"><LocalizedText>
                     Projects
-                  </div>
+                  </LocalizedText></div>
                   <div className="flex items-center gap-2 px-2.5 py-1 rounded text-zinc-300">
                     <span className="h-2 w-2 rounded-full bg-indigo-500" />
-                    <span className="truncate">Core Architecture</span>
+                    <span className="truncate"><LocalizedText>Core Architecture</LocalizedText></span>
                   </div>
                   <div className="flex items-center gap-2 px-2.5 py-1 rounded text-zinc-400">
                     <span className="h-2 w-2 rounded-full bg-cyan-500" />
-                    <span className="truncate">Mobile Client</span>
+                    <span className="truncate"><LocalizedText>Mobile Client</LocalizedText></span>
                   </div>
                   <div className="flex items-center gap-2 px-2.5 py-1 rounded text-zinc-400">
                     <span className="h-2 w-2 rounded-full bg-amber-500" />
-                    <span className="truncate">Design System 3.0</span>
+                    <span className="truncate"><LocalizedText>Design System 3.0</LocalizedText></span>
                   </div>
                 </div>
               </div>
@@ -307,11 +310,11 @@ export default function LandingPage() {
               <div className="col-span-12 sm:col-span-6 p-4 space-y-3 bg-[#08080c]/50">
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-3">
                   <div className="flex items-center gap-3">
-                    <span className="font-bold text-sm text-white">Issues</span>
+                    <span className="font-bold text-sm text-white"><LocalizedText>Issues</LocalizedText></span>
                     <div className="flex items-center gap-1 text-[11px] text-zinc-400 bg-white/[0.03] p-1 rounded-md">
-                      <span className="px-2 py-0.5 rounded bg-white/[0.08] text-white font-medium">Kanban</span>
-                      <span className="px-2 py-0.5 rounded hover:text-white">List</span>
-                      <span className="px-2 py-0.5 rounded hover:text-white">Timeline</span>
+                      <span className="px-2 py-0.5 rounded bg-white/[0.08] text-white font-medium"><LocalizedText>Kanban</LocalizedText></span>
+                      <span className="px-2 py-0.5 rounded hover:text-white"><LocalizedText>List</LocalizedText></span>
+                      <span className="px-2 py-0.5 rounded hover:text-white"><LocalizedText>Timeline</LocalizedText></span>
                     </div>
                   </div>
                 </div>
@@ -321,40 +324,40 @@ export default function LandingPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-[11px] text-indigo-400 font-semibold px-1">
                       <span className="flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-indigo-400" /> IN PROGRESS
-                      </span>
-                      <span className="font-mono text-zinc-400">2</span>
+                        <span className="h-2 w-2 rounded-full bg-indigo-400" /><LocalizedText> IN PROGRESS
+                      </LocalizedText></span>
+                      <span className="font-mono text-zinc-400"><LocalizedText>2</LocalizedText></span>
                     </div>
 
                     <div className="p-3 rounded-xl border border-white/10 bg-[#0e0e14] space-y-2 shadow-sm">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] text-indigo-400">NX-101</span>
-                        <Badge variant="default" className="text-[9px] h-4">High</Badge>
+                        <span className="font-mono text-[10px] text-indigo-400"><LocalizedText>NX-101</LocalizedText></span>
+                        <Badge variant="default" className="text-[9px] h-4"><LocalizedText>High</LocalizedText></Badge>
                       </div>
-                      <p className="text-xs font-medium text-white leading-snug">
+                      <p className="text-xs font-medium text-white leading-snug"><LocalizedText>
                         Architect real-time event bus with SSE
-                      </p>
+                      </LocalizedText></p>
                       <div className="flex items-center justify-between pt-1 border-t border-white/[0.06] text-[10px] text-zinc-400">
-                        <span>Core Platform</span>
-                        <span className="h-5 w-5 rounded-full bg-indigo-500/30 text-indigo-300 font-bold flex items-center justify-center">
+                        <span><LocalizedText>Core Platform</LocalizedText></span>
+                        <span className="h-5 w-5 rounded-full bg-indigo-500/30 text-indigo-300 font-bold flex items-center justify-center"><LocalizedText>
                           AV
-                        </span>
+                        </LocalizedText></span>
                       </div>
                     </div>
 
                     <div className="p-3 rounded-xl border border-white/10 bg-[#0e0e14] space-y-2 shadow-sm">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] text-indigo-400">NX-102</span>
-                        <Badge variant="default" className="text-[9px] h-4">Medium</Badge>
+                        <span className="font-mono text-[10px] text-indigo-400"><LocalizedText>NX-102</LocalizedText></span>
+                        <Badge variant="default" className="text-[9px] h-4"><LocalizedText>Medium</LocalizedText></Badge>
                       </div>
-                      <p className="text-xs font-medium text-white leading-snug">
+                      <p className="text-xs font-medium text-white leading-snug"><LocalizedText>
                         Drag-and-drop Kanban board reordering
-                      </p>
+                      </LocalizedText></p>
                       <div className="flex items-center justify-between pt-1 border-t border-white/[0.06] text-[10px] text-zinc-400">
-                        <span>Frontend</span>
-                        <span className="h-5 w-5 rounded-full bg-cyan-500/30 text-cyan-300 font-bold flex items-center justify-center">
+                        <span><LocalizedText>Frontend</LocalizedText></span>
+                        <span className="h-5 w-5 rounded-full bg-cyan-500/30 text-cyan-300 font-bold flex items-center justify-center"><LocalizedText>
                           SC
-                        </span>
+                        </LocalizedText></span>
                       </div>
                     </div>
                   </div>
@@ -363,40 +366,40 @@ export default function LandingPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-[11px] text-emerald-400 font-semibold px-1">
                       <span className="flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-emerald-400" /> DONE
-                      </span>
-                      <span className="font-mono text-zinc-400">3</span>
+                        <span className="h-2 w-2 rounded-full bg-emerald-400" /><LocalizedText> DONE
+                      </LocalizedText></span>
+                      <span className="font-mono text-zinc-400"><LocalizedText>3</LocalizedText></span>
                     </div>
 
                     <div className="p-3 rounded-xl border border-white/10 bg-[#0e0e14]/70 space-y-2 opacity-85">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] text-zinc-500">NX-105</span>
+                        <span className="font-mono text-[10px] text-zinc-500"><LocalizedText>NX-105</LocalizedText></span>
                         <Check className="h-3 w-3 text-emerald-400" />
                       </div>
-                      <p className="text-xs font-medium text-zinc-300 line-through">
+                      <p className="text-xs font-medium text-zinc-300 line-through"><LocalizedText>
                         Raycast-style Command Palette
-                      </p>
+                      </LocalizedText></p>
                       <div className="flex items-center justify-between pt-1 border-t border-white/[0.06] text-[10px] text-zinc-500">
-                        <span>UI Engine</span>
-                        <span className="h-5 w-5 rounded-full bg-emerald-500/30 text-emerald-300 font-bold flex items-center justify-center">
+                        <span><LocalizedText>UI Engine</LocalizedText></span>
+                        <span className="h-5 w-5 rounded-full bg-emerald-500/30 text-emerald-300 font-bold flex items-center justify-center"><LocalizedText>
                           OI
-                        </span>
+                        </LocalizedText></span>
                       </div>
                     </div>
 
                     <div className="p-3 rounded-xl border border-white/10 bg-[#0e0e14]/70 space-y-2 opacity-85">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] text-zinc-500">DS-301</span>
+                        <span className="font-mono text-[10px] text-zinc-500"><LocalizedText>DS-301</LocalizedText></span>
                         <Check className="h-3 w-3 text-emerald-400" />
                       </div>
-                      <p className="text-xs font-medium text-zinc-300 line-through">
+                      <p className="text-xs font-medium text-zinc-300 line-through"><LocalizedText>
                         Design tokens & Obsidian themes
-                      </p>
+                      </LocalizedText></p>
                       <div className="flex items-center justify-between pt-1 border-t border-white/[0.06] text-[10px] text-zinc-500">
-                        <span>Design</span>
-                        <span className="h-5 w-5 rounded-full bg-purple-500/30 text-purple-300 font-bold flex items-center justify-center">
+                        <span><LocalizedText>Design</LocalizedText></span>
+                        <span className="h-5 w-5 rounded-full bg-purple-500/30 text-purple-300 font-bold flex items-center justify-center"><LocalizedText>
                           ER
-                        </span>
+                        </LocalizedText></span>
                       </div>
                     </div>
                   </div>
@@ -406,13 +409,13 @@ export default function LandingPage() {
               {/* Right Pane: Unified Inbox Drawer */}
               <div className="col-span-12 sm:col-span-3 border-l border-white/[0.08] p-3 space-y-3 bg-[#060609]/60">
                 <div className="flex items-center justify-between px-1">
-                  <span className="font-bold text-xs text-white">Inbox</span>
+                  <span className="font-bold text-xs text-white"><LocalizedText>Inbox</LocalizedText></span>
                   <div className="flex items-center gap-1 text-[10px] text-zinc-400">
-                    <span className="text-indigo-400 font-medium">All</span>
-                    <span>•</span>
-                    <span>Tasks</span>
-                    <span>•</span>
-                    <span>Chat</span>
+                    <span className="text-indigo-400 font-medium"><LocalizedText>All</LocalizedText></span>
+                    <span><LocalizedText>•</LocalizedText></span>
+                    <span><LocalizedText>Tasks</LocalizedText></span>
+                    <span><LocalizedText>•</LocalizedText></span>
+                    <span><LocalizedText>Chat</LocalizedText></span>
                   </div>
                 </div>
 
@@ -420,34 +423,34 @@ export default function LandingPage() {
                   <div className="p-2.5 rounded-lg border border-white/[0.08] bg-white/[0.02] space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-indigo-500 shrink-0" />
-                      <span className="font-semibold text-white text-[11px]">Sarah Chen</span>
-                      <span className="text-[9px] text-zinc-500 ml-auto">10m ago</span>
+                      <span className="font-semibold text-white text-[11px]"><LocalizedText>Sarah Chen</LocalizedText></span>
+                      <span className="text-[9px] text-zinc-500 ml-auto"><LocalizedText>10m ago</LocalizedText></span>
                     </div>
-                    <p className="text-[11px] text-zinc-400 leading-snug">
-                      Assigned you to <strong>NX-101</strong>: SSE streaming bus
-                    </p>
+                    <p className="text-[11px] text-zinc-400 leading-snug"><LocalizedText>
+                      Assigned you to </LocalizedText><strong><LocalizedText>NX-101</LocalizedText></strong><LocalizedText>: SSE streaming bus
+                    </LocalizedText></p>
                   </div>
 
                   <div className="p-2.5 rounded-lg border border-white/[0.08] bg-white/[0.02] space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-                      <span className="font-semibold text-white text-[11px]">Oleg Ivanov</span>
-                      <span className="text-[9px] text-zinc-500 ml-auto">25m ago</span>
+                      <span className="font-semibold text-white text-[11px]"><LocalizedText>Oleg Ivanov</LocalizedText></span>
+                      <span className="text-[9px] text-zinc-500 ml-auto"><LocalizedText>25m ago</LocalizedText></span>
                     </div>
-                    <p className="text-[11px] text-zinc-400 leading-snug">
+                    <p className="text-[11px] text-zinc-400 leading-snug"><LocalizedText>
                       Opened PR #142 for real-time channel reactions
-                    </p>
+                    </LocalizedText></p>
                   </div>
 
                   <div className="p-2.5 rounded-lg border border-white/[0.08] bg-white/[0.02] space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-amber-500 shrink-0" />
-                      <span className="font-semibold text-white text-[11px]">Sprint 24 Alert</span>
-                      <span className="text-[9px] text-zinc-500 ml-auto">1h ago</span>
+                      <span className="font-semibold text-white text-[11px]"><LocalizedText>Sprint 24 Alert</LocalizedText></span>
+                      <span className="text-[9px] text-zinc-500 ml-auto"><LocalizedText>1h ago</LocalizedText></span>
                     </div>
-                    <p className="text-[11px] text-zinc-400 leading-snug">
+                    <p className="text-[11px] text-zinc-400 leading-snug"><LocalizedText>
                       Velocity on track: 92% deliverables completed
-                    </p>
+                    </LocalizedText></p>
                   </div>
                 </div>
               </div>
@@ -461,12 +464,12 @@ export default function LandingPage() {
       {/* Section 2: Unmatched Productivity (Image 2 replica Bento Grid) */}
       <section id="productivity" className="py-24 px-4 max-w-6xl mx-auto space-y-12">
         <div className="text-center space-y-3">
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white"><LocalizedText>
             Unmatched productivity
-          </h2>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          </LocalizedText></h2>
+          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed"><LocalizedText>
             Nexoda is a process, project, time, and knowledge management platform that provides amazing collaboration opportunities for developers and product teams alike.
-          </p>
+          </LocalizedText></p>
         </div>
 
         {/* 4-Card Bento Grid */}
@@ -479,32 +482,32 @@ export default function LandingPage() {
             <div className="relative my-auto p-4 rounded-xl border border-white/10 bg-[#0c0c12]/80 backdrop-blur-xl shadow-2xl max-w-sm mx-auto w-full space-y-2.5">
               <div className="flex items-center gap-2 pb-2 border-b border-white/[0.08] text-xs text-zinc-400">
                 <Search className="h-3.5 w-3.5 text-amber-400" />
-                <span className="text-white font-medium">Run command...</span>
-                <kbd className="font-mono text-[10px] ml-auto text-zinc-500">⌘K</kbd>
+                <span className="text-white font-medium"><LocalizedText>Run command...</LocalizedText></span>
+                <kbd className="font-mono text-[10px] ml-auto text-zinc-500"><LocalizedText>⌘K</LocalizedText></kbd>
               </div>
 
               <div className="space-y-1 text-xs">
                 <div className="flex items-center justify-between p-2 rounded-lg bg-white/[0.08] text-white">
-                  <span>Mark Task as Done</span>
-                  <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded text-amber-400">K</kbd>
+                  <span><LocalizedText>Mark Task as Done</LocalizedText></span>
+                  <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded text-amber-400"><LocalizedText>K</LocalizedText></kbd>
                 </div>
                 <div className="flex items-center justify-between p-2 rounded-lg text-zinc-400 hover:text-white">
-                  <span>Open To-Do List</span>
-                  <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded">T</kbd>
+                  <span><LocalizedText>Open To-Do List</LocalizedText></span>
+                  <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded"><LocalizedText>T</LocalizedText></kbd>
                 </div>
                 <div className="flex items-center justify-between p-2 rounded-lg text-zinc-400 hover:text-white">
-                  <span>Switch to Timeline View</span>
-                  <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded">V</kbd>
+                  <span><LocalizedText>Switch to Timeline View</LocalizedText></span>
+                  <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded"><LocalizedText>V</LocalizedText></kbd>
                 </div>
               </div>
             </div>
 
             <div className="relative z-10 pt-4">
-              <h3 className="font-bold text-sm text-white">
-                Keyboard shortcuts.{" "}
-                <span className="text-zinc-400 font-normal">
+              <h3 className="font-bold text-sm text-white"><LocalizedText>
+                Keyboard shortcuts.</LocalizedText>{" "}
+                <span className="text-zinc-400 font-normal"><LocalizedText>
                   Work efficiently with instant access to common actions.
-                </span>
+                </LocalizedText></span>
               </h3>
             </div>
           </div>
@@ -517,44 +520,44 @@ export default function LandingPage() {
             <div className="relative my-auto p-4 rounded-xl border border-white/10 bg-[#0c0c12]/80 backdrop-blur-xl shadow-2xl max-w-sm mx-auto w-full space-y-3">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5 text-cyan-400" /> Today Schedule
-                </span>
-                <Badge variant="outline" className="text-[10px] border-cyan-500/30 text-cyan-300">
+                  <Calendar className="h-3.5 w-3.5 text-cyan-400" /><LocalizedText> Today Schedule
+                </LocalizedText></span>
+                <Badge variant="outline" className="text-[10px] border-cyan-500/30 text-cyan-300"><LocalizedText>
                   Sprint 24
-                </Badge>
+                </LocalizedText></Badge>
               </div>
 
               <div className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.06] space-y-1.5">
                 <div className="flex items-center justify-between text-[10px]">
-                  <Badge variant="default" className="h-4 text-[9px] bg-rose-500/20 text-rose-300 border-0">High</Badge>
-                  <span className="text-zinc-500">10:00 AM</span>
+                  <Badge variant="default" className="h-4 text-[9px] bg-rose-500/20 text-rose-300 border-0"><LocalizedText>High</LocalizedText></Badge>
+                  <span className="text-zinc-500"><LocalizedText>10:00 AM</LocalizedText></span>
                 </div>
-                <p className="text-xs font-medium text-white">
+                <p className="text-xs font-medium text-white"><LocalizedText>
                   Implement new features according to project requirements
-                </p>
+                </LocalizedText></p>
                 <div className="flex items-center gap-2 pt-1 text-[10px] text-zinc-400">
-                  <span className="h-4 w-4 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-[9px]">SC</span>
-                  <span>Sarah Chen</span>
+                  <span className="h-4 w-4 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-[9px]"><LocalizedText>SC</LocalizedText></span>
+                  <span><LocalizedText>Sarah Chen</LocalizedText></span>
                 </div>
               </div>
 
               <div className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.06] space-y-1.5">
                 <div className="flex items-center justify-between text-[10px]">
-                  <Badge variant="default" className="h-4 text-[9px] bg-amber-500/20 text-amber-300 border-0">Medium</Badge>
-                  <span className="text-zinc-500">02:30 PM</span>
+                  <Badge variant="default" className="h-4 text-[9px] bg-amber-500/20 text-amber-300 border-0"><LocalizedText>Medium</LocalizedText></Badge>
+                  <span className="text-zinc-500"><LocalizedText>02:30 PM</LocalizedText></span>
                 </div>
-                <p className="text-xs font-medium text-white">
+                <p className="text-xs font-medium text-white"><LocalizedText>
                   Code Review & MVP Testing
-                </p>
+                </LocalizedText></p>
               </div>
             </div>
 
             <div className="relative z-10 pt-4">
-              <h3 className="font-bold text-sm text-white">
-                Team Planner.{" "}
-                <span className="text-zinc-400 font-normal">
+              <h3 className="font-bold text-sm text-white"><LocalizedText>
+                Team Planner.</LocalizedText>{" "}
+                <span className="text-zinc-400 font-normal"><LocalizedText>
                   Keep track of the bigger picture by viewing all individual tasks in one centralized team calendar.
-                </span>
+                </LocalizedText></span>
               </h3>
             </div>
           </div>
@@ -566,38 +569,38 @@ export default function LandingPage() {
             {/* Visual Graphic: Floating Time-Block Card */}
             <div className="relative my-auto p-4 rounded-xl border border-white/10 bg-[#0c0c12]/80 backdrop-blur-xl shadow-2xl max-w-sm mx-auto w-full space-y-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-mono text-zinc-400">03:00 - 04:00 pm</span>
-                <span className="text-[11px] text-zinc-500">Weekly on Monday</span>
+                <span className="font-mono text-zinc-400"><LocalizedText>03:00 - 04:00 pm</LocalizedText></span>
+                <span className="text-[11px] text-zinc-500"><LocalizedText>Weekly on Monday</LocalizedText></span>
               </div>
 
               <div>
-                <h4 className="font-bold text-sm text-white">Design meeting</h4>
-                <p className="text-xs text-zinc-400 mt-0.5">
+                <h4 className="font-bold text-sm text-white"><LocalizedText>Design meeting</LocalizedText></h4>
+                <p className="text-xs text-zinc-400 mt-0.5"><LocalizedText>
                   Weekly review and refinement of project prototypes.
-                </p>
+                </LocalizedText></p>
               </div>
 
               <div className="flex items-center gap-2 pt-1">
                 <button className="flex-1 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs flex items-center justify-center gap-1.5 transition-colors">
-                  <Video className="h-3.5 w-3.5" /> Join Meeting
-                </button>
+                  <Video className="h-3.5 w-3.5" /><LocalizedText> Join Meeting
+                </LocalizedText></button>
               </div>
 
               <div className="flex items-center justify-between text-[11px] text-zinc-400 pt-1 border-t border-white/[0.06]">
-                <span>8 participants</span>
+                <span><LocalizedText>8 participants</LocalizedText></span>
                 <div className="flex items-center gap-1">
-                  <span className="text-zinc-500">Going?</span>
-                  <span className="text-white font-semibold cursor-pointer">Yes</span>
+                  <span className="text-zinc-500"><LocalizedText>Going?</LocalizedText></span>
+                  <span className="text-white font-semibold cursor-pointer"><LocalizedText>Yes</LocalizedText></span>
                 </div>
               </div>
             </div>
 
             <div className="relative z-10 pt-4">
-              <h3 className="font-bold text-sm text-white">
-                Time-blocking.{" "}
-                <span className="text-zinc-400 font-normal">
+              <h3 className="font-bold text-sm text-white"><LocalizedText>
+                Time-blocking.</LocalizedText>{" "}
+                <span className="text-zinc-400 font-normal"><LocalizedText>
                   Transform daily tasks into structured time blocks for focused productivity.
-                </span>
+                </LocalizedText></span>
               </h3>
             </div>
           </div>
@@ -615,18 +618,18 @@ export default function LandingPage() {
             <div className="relative z-10 my-auto flex h-48 w-full items-center justify-center">
               <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-amber-400/50 bg-[#12121c] text-amber-400 shadow-xl shadow-amber-500/30">
                 <Bell className="h-6 w-6" />
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] font-bold text-black">
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-[9px] font-bold text-black"><LocalizedText>
                   +3
-                </span>
+                </LocalizedText></span>
               </div>
             </div>
 
             <div className="relative z-10 pt-4">
-              <h3 className="font-bold text-sm text-white">
-                Notifications.{" "}
-                <span className="text-zinc-400 font-normal">
+              <h3 className="font-bold text-sm text-white"><LocalizedText>
+                Notifications.</LocalizedText>{" "}
+                <span className="text-zinc-400 font-normal"><LocalizedText>
                   Keep up to date with any changes by receiving instant notifications.
-                </span>
+                </LocalizedText></span>
               </h3>
             </div>
           </div>
@@ -636,12 +639,12 @@ export default function LandingPage() {
       {/* Section 3: Virtual Office & Spatial Presence (Image 3 replica) */}
       <section id="virtual-office" className="py-24 px-4 max-w-6xl mx-auto space-y-12 relative">
         <div className="text-center space-y-3">
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white"><LocalizedText>
             Virtual Office & Spatial Presence
-          </h2>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          </LocalizedText></h2>
+          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed"><LocalizedText>
             Collaborating with remote teams is easy in your virtual office environment. Enjoy real-time audio and video within your workspace without extra software.
-          </p>
+          </LocalizedText></p>
         </div>
 
         {/* Huly work-together plate: oversized office waves + live call loop */}
@@ -669,13 +672,13 @@ export default function LandingPage() {
 
               <div className="pointer-events-none absolute inset-0 text-white">
                 <div className="absolute left-5 top-5 flex flex-col">
-                  <span className="text-[15px] font-medium leading-snug tracking-tight opacity-90">
+                  <span className="text-[15px] font-medium leading-snug tracking-tight opacity-90"><LocalizedText>
                     Onboarding Meeting
-                  </span>
+                  </LocalizedText></span>
                   <span className="mt-0.5 flex items-center gap-1.5 text-[11px] font-medium opacity-60">
-                    <Users className="h-3.5 w-3.5" />
+                    <Users className="h-3.5 w-3.5" /><LocalizedText>
                     4 participants
-                  </span>
+                  </LocalizedText></span>
                 </div>
 
                 <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/70 px-3 py-1.5 backdrop-blur-md">
@@ -699,22 +702,22 @@ export default function LandingPage() {
           {/* 3 Value Props below */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 relative z-10 text-xs">
             <div className="space-y-1.5">
-              <h4 className="font-bold text-sm text-white">Customize workspace</h4>
-              <p className="text-zinc-400 leading-relaxed">
+              <h4 className="font-bold text-sm text-white"><LocalizedText>Customize workspace</LocalizedText></h4>
+              <p className="text-zinc-400 leading-relaxed"><LocalizedText>
                 Create your own offices and meeting rooms to suit your team's unique rhythm.
-              </p>
+              </LocalizedText></p>
             </div>
             <div className="space-y-1.5">
-              <h4 className="font-bold text-sm text-white">Audio and video calls</h4>
-              <p className="text-zinc-400 leading-relaxed">
+              <h4 className="font-bold text-sm text-white"><LocalizedText>Audio and video calls</LocalizedText></h4>
+              <p className="text-zinc-400 leading-relaxed"><LocalizedText>
                 Collaborate efficiently and seamlessly with high quality audio and video conferencing.
-              </p>
+              </LocalizedText></p>
             </div>
             <div className="space-y-1.5">
-              <h4 className="font-bold text-sm text-white">Invite guests</h4>
-              <p className="text-zinc-400 leading-relaxed">
+              <h4 className="font-bold text-sm text-white"><LocalizedText>Invite guests</LocalizedText></h4>
+              <p className="text-zinc-400 leading-relaxed"><LocalizedText>
                 Meet with clients and contractors without ever needing to leave your workspace.
-              </p>
+              </LocalizedText></p>
             </div>
           </div>
         </div>
@@ -723,12 +726,12 @@ export default function LandingPage() {
       {/* Section 4: GitHub Bidirectional Sync ("Both ways." Image 4 replica) */}
       <section id="github" className="py-24 px-4 max-w-6xl mx-auto space-y-12">
         <div className="text-center space-y-3">
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white"><LocalizedText>
             Both ways.
-          </h2>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          </LocalizedText></h2>
+          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed"><LocalizedText>
             Manage your tasks efficiently with Nexoda's bidirectional GitHub synchronization. Use Nexoda as an advanced front-end for GitHub Issues and GitHub Projects.
-          </p>
+          </LocalizedText></p>
         </div>
 
         {/* Floating GitHub Window — Huly sync-with-github/glow plate */}
@@ -747,11 +750,11 @@ export default function LandingPage() {
             <div className="p-3 border-b border-white/[0.08] bg-[#07070b] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <FolderGit2 className="h-4 w-4 text-zinc-400" />
-                <span className="font-semibold text-white">acme-project / core-engine</span>
+                <span className="font-semibold text-white"><LocalizedText>acme-project / core-engine</LocalizedText></span>
               </div>
               <div className="flex items-center gap-2 text-[11px] text-zinc-400">
-                <span className="px-2 py-0.5 rounded bg-white/[0.06] text-white">Pull requests (21)</span>
-                <span className="px-2 py-0.5 rounded">Issues (148)</span>
+                <span className="px-2 py-0.5 rounded bg-white/[0.06] text-white"><LocalizedText>Pull requests (21)</LocalizedText></span>
+                <span className="px-2 py-0.5 rounded"><LocalizedText>Issues (148)</LocalizedText></span>
               </div>
             </div>
 
@@ -761,33 +764,33 @@ export default function LandingPage() {
                 <div className="flex items-center gap-3">
                   <GitPullRequest className="h-4 w-4 text-emerald-400 shrink-0" />
                   <div>
-                    <span className="font-medium text-white">Feature Request: Document analysis engine</span>
-                    <span className="text-[10px] text-zinc-500 block">#5054 opened 10 minutes ago by alexvance</span>
+                    <span className="font-medium text-white"><LocalizedText>Feature Request: Document analysis engine</LocalizedText></span>
+                    <span className="text-[10px] text-zinc-500 block"><LocalizedText>#5054 opened 10 minutes ago by alexvance</LocalizedText></span>
                   </div>
                 </div>
-                <Badge variant="outline" className="border-emerald-500/30 text-emerald-300 text-[10px]">Open</Badge>
+                <Badge variant="outline" className="border-emerald-500/30 text-emerald-300 text-[10px]"><LocalizedText>Open</LocalizedText></Badge>
               </div>
 
               <div className="p-3.5 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
                 <div className="flex items-center gap-3">
                   <GitPullRequest className="h-4 w-4 text-emerald-400 shrink-0" />
                   <div>
-                    <span className="font-medium text-white">Store markup as ProseMirror JSON instead of HTML</span>
-                    <span className="text-[10px] text-zinc-500 block">#5051 opened 2 hours ago by sarahchen</span>
+                    <span className="font-medium text-white"><LocalizedText>Store markup as ProseMirror JSON instead of HTML</LocalizedText></span>
+                    <span className="text-[10px] text-zinc-500 block"><LocalizedText>#5051 opened 2 hours ago by sarahchen</LocalizedText></span>
                   </div>
                 </div>
-                <Badge variant="outline" className="border-emerald-500/30 text-emerald-300 text-[10px]">Open</Badge>
+                <Badge variant="outline" className="border-emerald-500/30 text-emerald-300 text-[10px]"><LocalizedText>Open</LocalizedText></Badge>
               </div>
 
               <div className="p-3.5 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
                 <div className="flex items-center gap-3">
                   <GitPullRequest className="h-4 w-4 text-emerald-400 shrink-0" />
                   <div>
-                    <span className="font-medium text-white">Improve unified inbox grouping & SSE stream dispatcher</span>
-                    <span className="text-[10px] text-zinc-500 block">#5049 opened 5 hours ago by olegivanov</span>
+                    <span className="font-medium text-white"><LocalizedText>Improve unified inbox grouping & SSE stream dispatcher</LocalizedText></span>
+                    <span className="text-[10px] text-zinc-500 block"><LocalizedText>#5049 opened 5 hours ago by olegivanov</LocalizedText></span>
                   </div>
                 </div>
-                <Badge variant="outline" className="border-emerald-500/30 text-emerald-300 text-[10px]">Open</Badge>
+                <Badge variant="outline" className="border-emerald-500/30 text-emerald-300 text-[10px]"><LocalizedText>Open</LocalizedText></Badge>
               </div>
             </div>
           </div>
@@ -796,28 +799,28 @@ export default function LandingPage() {
         {/* 6-Icon Feature Grid below */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 text-xs">
           <div className="space-y-1">
-            <h4 className="font-bold text-sm text-white">Two-way synchronization</h4>
-            <p className="text-zinc-400">Integrate your task tracker with GitHub to sync changes instantly.</p>
+            <h4 className="font-bold text-sm text-white"><LocalizedText>Two-way synchronization</LocalizedText></h4>
+            <p className="text-zinc-400"><LocalizedText>Integrate your task tracker with GitHub to sync changes instantly.</LocalizedText></p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-bold text-sm text-white">Private tasks</h4>
-            <p className="text-zinc-400">Integration and management of multiple data repositories effectively.</p>
+            <h4 className="font-bold text-sm text-white"><LocalizedText>Private tasks</LocalizedText></h4>
+            <p className="text-zinc-400"><LocalizedText>Integration and management of multiple data repositories effectively.</LocalizedText></p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-bold text-sm text-white">Multiple repositories</h4>
-            <p className="text-zinc-400">Organize multiple projects for more effective planning and collaboration.</p>
+            <h4 className="font-bold text-sm text-white"><LocalizedText>Multiple repositories</LocalizedText></h4>
+            <p className="text-zinc-400"><LocalizedText>Organize multiple projects for more effective planning and collaboration.</LocalizedText></p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-bold text-sm text-white">Milestone migration</h4>
-            <p className="text-zinc-400">Transfer sprints and milestones seamlessly between platforms.</p>
+            <h4 className="font-bold text-sm text-white"><LocalizedText>Milestone migration</LocalizedText></h4>
+            <p className="text-zinc-400"><LocalizedText>Transfer sprints and milestones seamlessly between platforms.</LocalizedText></p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-bold text-sm text-white">Track progress</h4>
-            <p className="text-zinc-400">Automatic status transitions whenever PRs are merged or closed.</p>
+            <h4 className="font-bold text-sm text-white"><LocalizedText>Track progress</LocalizedText></h4>
+            <p className="text-zinc-400"><LocalizedText>Automatic status transitions whenever PRs are merged or closed.</LocalizedText></p>
           </div>
           <div className="space-y-1">
-            <h4 className="font-bold text-sm text-white">Advanced filtering</h4>
-            <p className="text-zinc-400">Slice and query across commits, branches, and internal issue links.</p>
+            <h4 className="font-bold text-sm text-white"><LocalizedText>Advanced filtering</LocalizedText></h4>
+            <p className="text-zinc-400"><LocalizedText>Slice and query across commits, branches, and internal issue links.</LocalizedText></p>
           </div>
         </div>
       </section>
@@ -825,12 +828,12 @@ export default function LandingPage() {
       {/* Pricing Matrix */}
       <section id="pricing" className="py-24 px-4 max-w-6xl mx-auto space-y-8">
         <div className="text-center space-y-3">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white"><LocalizedText>
             Transparent, High-Velocity Pricing
-          </h2>
-          <p className="text-sm text-zinc-400 max-w-md mx-auto">
+          </LocalizedText></h2>
+          <p className="text-sm text-zinc-400 max-w-md mx-auto"><LocalizedText>
             Choose the plan that matches your team's ambition. Switch or cancel anytime.
-          </p>
+          </LocalizedText></p>
 
           <div className="inline-flex items-center gap-2 p-1 rounded-full bg-white/[0.04] border border-white/10 text-xs mt-2">
             <button
@@ -838,16 +841,16 @@ export default function LandingPage() {
               className={`px-3.5 py-1.5 rounded-full transition-all ${
                 billingPeriod === "monthly" ? "bg-white text-black font-semibold shadow-sm" : "text-zinc-400"
               }`}
-            >
+            ><LocalizedText>
               Monthly
-            </button>
+            </LocalizedText></button>
             <button
               onClick={() => setBillingPeriod("annual")}
               className={`px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${
                 billingPeriod === "annual" ? "bg-white text-black font-semibold shadow-sm" : "text-zinc-400"
               }`}
-            >
-              Annual <span className="text-[10px] text-cyan-500 font-bold">Save 20%</span>
+            ><LocalizedText>
+              Annual </LocalizedText><span className="text-[10px] text-cyan-500 font-bold"><LocalizedText>Save 20%</LocalizedText></span>
             </button>
           </div>
         </div>
@@ -861,27 +864,27 @@ export default function LandingPage() {
               }`}
             >
               {tier.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-cyan-500 text-black text-[10px] font-bold uppercase tracking-wider">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-cyan-500 text-black text-[10px] font-bold uppercase tracking-wider"><LocalizedText>
                   Most Popular
-                </span>
+                </LocalizedText></span>
               )}
 
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-bold text-base text-white">{tier.name}</h3>
-                  <p className="text-xs text-zinc-400 mt-1 min-h-[32px]">{tier.desc}</p>
+                  <h3 className="font-bold text-base text-white"><LocalizedText>{tier.name}</LocalizedText></h3>
+                  <p className="text-xs text-zinc-400 mt-1 min-h-[32px]"><LocalizedText>{tier.desc}</LocalizedText></p>
                 </div>
 
                 <div>
                   <span className="text-3xl font-extrabold text-white">{tier.price}</span>
-                  <span className="text-xs text-zinc-400 ml-1">/{tier.period}</span>
+                  <span className="text-xs text-zinc-400 ml-1"><LocalizedText>/</LocalizedText><LocalizedText>{tier.period}</LocalizedText></span>
                 </div>
 
                 <div className="space-y-2 pt-2 border-t border-white/[0.06] text-xs">
                   {tier.features.map((feat, idx) => (
                     <div key={idx} className="flex items-center gap-2">
                       <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
-                      <span className="text-zinc-300">{feat}</span>
+                      <span className="text-zinc-300"><LocalizedText>{feat}</LocalizedText></span>
                     </div>
                   ))}
                 </div>
@@ -893,7 +896,7 @@ export default function LandingPage() {
                   tier.popular ? "bg-white text-black hover:bg-zinc-200" : "bg-white/[0.06] text-white hover:bg-white/[0.1] border border-white/10"
                 }`}
               >
-                <Link href={tier.href}>{tier.cta}</Link>
+                <Link href={tier.href}><LocalizedText>{tier.cta}</LocalizedText></Link>
               </Button>
             </div>
           ))}
@@ -903,7 +906,7 @@ export default function LandingPage() {
       {/* FAQ Section */}
       <section id="faq" className="py-16 px-4 max-w-3xl mx-auto space-y-6">
         <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight text-white">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-white"><LocalizedText>Frequently Asked Questions</LocalizedText></h2>
         </div>
 
         <div className="space-y-3">
@@ -914,7 +917,7 @@ export default function LandingPage() {
               className="p-4 rounded-xl border border-white/[0.08] bg-[#07070a] cursor-pointer transition-all space-y-2"
             >
               <div className="flex items-center justify-between font-semibold text-xs text-white">
-                <span>{faq.q}</span>
+                <span><LocalizedText>{faq.q}</LocalizedText></span>
                 <ChevronDown
                   className={`h-4 w-4 text-zinc-400 transition-transform ${
                     openFaq === idx ? "rotate-180 text-cyan-400" : ""
@@ -923,7 +926,7 @@ export default function LandingPage() {
               </div>
               {openFaq === idx && (
                 <p className="text-xs text-zinc-400 leading-relaxed pt-1 border-t border-white/[0.06]">
-                  {faq.a}
+                  <LocalizedText>{faq.a}</LocalizedText>
                 </p>
               )}
             </div>
@@ -944,18 +947,18 @@ export default function LandingPage() {
           />
 
           <div className="relative z-10 mx-auto max-w-xl space-y-4 text-center md:ml-auto md:mr-0 md:max-w-md md:text-left">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl"><LocalizedText>
               Unify your team's workspace today.
-            </h2>
-            <p className="mx-auto max-w-md text-sm text-zinc-400 md:mx-0">
+            </LocalizedText></h2>
+            <p className="mx-auto max-w-md text-sm text-zinc-400 md:mx-0"><LocalizedText>
               Experience the productivity multiplier of having projects, planner, docs, and chat connected in one place.
-            </p>
+            </LocalizedText></p>
             <div className="pt-2">
               <Link
                 href="/login"
                 className="ember-btn inline-flex items-center gap-3 px-8 py-3.5 text-xs font-bold uppercase tracking-wider"
               >
-                <span>LAUNCH NEXODA4TEAM</span>
+                <span><LocalizedText>LAUNCH NEXODA4TEAM</LocalizedText></span>
                 <ArrowRight className="relative z-10 h-4 w-4" />
               </Link>
             </div>
@@ -966,11 +969,12 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-white/[0.08] py-8 px-4 text-center text-xs text-zinc-500 space-y-2">
         <div className="flex items-center justify-center gap-2 font-semibold text-white">
-          <div className="h-5 w-5 rounded bg-indigo-500 flex items-center justify-center text-[10px] font-bold">N</div>
-          <span>Nexoda4TEAM</span>
+          <div className="h-5 w-5 rounded bg-indigo-500 flex items-center justify-center text-[10px] font-bold"><LocalizedText>N</LocalizedText></div>
+          <span><LocalizedText>Nexoda4TEAM</LocalizedText></span>
         </div>
-        <p>© 2026 Nexoda Studio. An open-source Everything App for high-velocity teams.</p>
+        <p><LocalizedText>© 2026 Nexoda Studio. An open-source Everything App for high-velocity teams.</LocalizedText></p>
       </footer>
     </div>
   );
 }
+

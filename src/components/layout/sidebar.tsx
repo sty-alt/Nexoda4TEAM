@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -147,11 +148,11 @@ export function Sidebar({
           >
             <div className="flex items-center gap-2">
               <Search className="h-3.5 w-3.5 group-hover:text-primary transition-colors" />
-              <span>Jump to or search...</span>
+              <span><LocalizedText>Jump to or search...</LocalizedText></span>
             </div>
-            <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-muted/60 border border-border/60">
+            <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-muted/60 border border-border/60"><LocalizedText>
               ⌘K
-            </kbd>
+            </LocalizedText></kbd>
           </button>
         </div>
 
@@ -174,7 +175,7 @@ export function Sidebar({
                 >
                   <div className="flex items-center gap-2.5">
                     <Icon className={cn("h-4 w-4", active ? "text-primary" : "text-muted-foreground")} />
-                    <span>{item.label}</span>
+                    <span><LocalizedText>{item.label}</LocalizedText></span>
                   </div>
                   {item.badge !== undefined && (
                     <span className="px-1.5 py-0.2 rounded-full bg-primary/20 text-primary text-[10px] font-bold">
@@ -194,7 +195,7 @@ export function Sidebar({
                 className="flex items-center gap-1.5 hover:text-foreground transition-colors"
               >
                 {projectsOpen ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
-                <span>Projects</span>
+                <span><LocalizedText>Projects</LocalizedText></span>
               </button>
               <Link
                 href={`${baseUrl}/projects`}
@@ -240,7 +241,7 @@ export function Sidebar({
                 className="flex items-center gap-1.5 hover:text-foreground transition-colors"
               >
                 {channelsOpen ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
-                <span>Channels</span>
+                <span><LocalizedText>Channels</LocalizedText></span>
               </button>
               <Link
                 href={`${baseUrl}/chat`}
@@ -284,10 +285,11 @@ export function Sidebar({
           className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-xs text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
         >
           <Settings className="h-4 w-4" />
-          <span>Workspace Settings</span>
+          <span><LocalizedText>Workspace Settings</LocalizedText></span>
         </Link>
         <UserNav user={currentUser} workspaceSlug={currentWorkspace.slug} />
       </div>
     </aside>
   );
 }
+

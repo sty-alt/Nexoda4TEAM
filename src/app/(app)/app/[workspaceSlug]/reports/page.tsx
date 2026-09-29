@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React from "react";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
@@ -72,68 +73,68 @@ export default function ReportsPage() {
       {/* Header */}
       <div className="border-b border-border/40 pb-4">
         <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold tracking-tight">Reports & Velocity</h1>
-          <Badge variant="default" className="text-xs">
+          <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Reports & Velocity</LocalizedText></h1>
+          <Badge variant="default" className="text-xs"><LocalizedText>
             Sprint 24 Cycle
-          </Badge>
+          </LocalizedText></Badge>
         </div>
-        <p className="text-xs text-muted-foreground mt-0.5">
+        <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
           Engineering throughput, velocity, cycle time, and workload distribution metrics
-        </p>
+        </LocalizedText></p>
       </div>
 
       {/* Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="subtle-border p-4">
           <div className="flex items-center justify-between text-xs text-muted-foreground font-medium">
-            <span>Sprint Velocity</span>
+            <span><LocalizedText>Sprint Velocity</LocalizedText></span>
             <Flame className="h-4 w-4 text-amber-500" />
           </div>
           <div className="text-2xl font-bold mt-1 text-foreground">
-            {velocityPoints} pts
-          </div>
+            {velocityPoints}<LocalizedText> pts
+          </LocalizedText></div>
           <div className="text-[11px] text-emerald-500 font-medium flex items-center gap-0.5 mt-1">
-            <ArrowUpRight className="h-3 w-3" /> +18% vs last sprint
-          </div>
+            <ArrowUpRight className="h-3 w-3" /><LocalizedText> +18% vs last sprint
+          </LocalizedText></div>
         </Card>
 
         <Card className="subtle-border p-4">
           <div className="flex items-center justify-between text-xs text-muted-foreground font-medium">
-            <span>Completion Rate</span>
+            <span><LocalizedText>Completion Rate</LocalizedText></span>
             <CheckCircle2 className="h-4 w-4 text-emerald-500" />
           </div>
           <div className="text-2xl font-bold mt-1 text-foreground">
-            {completionRate}%
-          </div>
+            {completionRate}<LocalizedText>%
+          </LocalizedText></div>
           <div className="text-[11px] text-muted-foreground mt-1">
-            {completedTasks} of {totalTasks} deliverables
-          </div>
+            {completedTasks}<LocalizedText> of </LocalizedText>{totalTasks}<LocalizedText> deliverables
+          </LocalizedText></div>
         </Card>
 
         <Card className="subtle-border p-4">
           <div className="flex items-center justify-between text-xs text-muted-foreground font-medium">
-            <span>Average Cycle Time</span>
+            <span><LocalizedText>Average Cycle Time</LocalizedText></span>
             <Zap className="h-4 w-4 text-primary" />
           </div>
           <div className="text-2xl font-bold mt-1 text-foreground">
-            {avgCycleTimeDays} days
-          </div>
-          <div className="text-[11px] text-muted-foreground mt-1">
+            {avgCycleTimeDays}<LocalizedText> days
+          </LocalizedText></div>
+          <div className="text-[11px] text-muted-foreground mt-1"><LocalizedText>
             Time from in-progress to shipped
-          </div>
+          </LocalizedText></div>
         </Card>
 
         <Card className="subtle-border p-4">
           <div className="flex items-center justify-between text-xs text-muted-foreground font-medium">
-            <span>Tracked Focus Time</span>
+            <span><LocalizedText>Tracked Focus Time</LocalizedText></span>
             <Clock className="h-4 w-4 text-primary" />
           </div>
           <div className="text-2xl font-bold mt-1 text-foreground font-mono">
-            {totalTrackedHours}h
-          </div>
-          <div className="text-[11px] text-muted-foreground mt-1">
+            {totalTrackedHours}<LocalizedText>h
+          </LocalizedText></div>
+          <div className="text-[11px] text-muted-foreground mt-1"><LocalizedText>
             Aggregated across team members
-          </div>
+          </LocalizedText></div>
         </Card>
       </div>
 
@@ -142,14 +143,14 @@ export default function ReportsPage() {
         {/* Team Time Logged Breakdown */}
         <Card className="subtle-border p-5 space-y-4">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Clock className="h-4 w-4 text-primary" /> Team Hours Tracked
-          </CardTitle>
+            <Clock className="h-4 w-4 text-primary" /><LocalizedText> Team Hours Tracked
+          </LocalizedText></CardTitle>
 
           <div className="space-y-3 pt-2">
             {userTimeData.length === 0 ? (
-              <div className="text-xs text-muted-foreground text-center py-8">
+              <div className="text-xs text-muted-foreground text-center py-8"><LocalizedText>
                 No time entries logged yet.
-              </div>
+              </LocalizedText></div>
             ) : (
               userTimeData.map((item: any) => {
                 const maxHours = Math.max(...userTimeData.map((u: any) => u.hours), 1);
@@ -159,7 +160,7 @@ export default function ReportsPage() {
                   <div key={item.name} className="space-y-1 text-xs">
                     <div className="flex justify-between font-medium">
                       <span>{item.name}</span>
-                      <span className="font-mono text-muted-foreground">{item.hours} hrs</span>
+                      <span className="font-mono text-muted-foreground">{item.hours}<LocalizedText> hrs</LocalizedText></span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                       <div
@@ -177,38 +178,38 @@ export default function ReportsPage() {
         {/* Lead Time & Throughput Explanation */}
         <Card className="subtle-border p-5 space-y-4">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Activity className="h-4 w-4 text-primary" /> Throughput & Delivery Metrics
-          </CardTitle>
+            <Activity className="h-4 w-4 text-primary" /><LocalizedText> Throughput & Delivery Metrics
+          </LocalizedText></CardTitle>
 
           <div className="space-y-3 pt-2 text-xs">
             <div className="p-3.5 rounded-xl border border-border/40 bg-card/60 space-y-1">
               <div className="flex items-center justify-between font-semibold">
-                <span>Lead Time</span>
-                <span className="font-mono text-primary">{avgLeadTimeDays} days</span>
+                <span><LocalizedText>Lead Time</LocalizedText></span>
+                <span className="font-mono text-primary">{avgLeadTimeDays}<LocalizedText> days</LocalizedText></span>
               </div>
-              <p className="text-[11px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground"><LocalizedText>
                 Total time from when an issue is created in Backlog to when it is shipped to Done.
-              </p>
+              </LocalizedText></p>
             </div>
 
             <div className="p-3.5 rounded-xl border border-border/40 bg-card/60 space-y-1">
               <div className="flex items-center justify-between font-semibold">
-                <span>WIP Constraints (Work in Progress)</span>
-                <Badge variant="success" className="text-[10px]">Healthy (4 active)</Badge>
+                <span><LocalizedText>WIP Constraints (Work in Progress)</LocalizedText></span>
+                <Badge variant="success" className="text-[10px]"><LocalizedText>Healthy (4 active)</LocalizedText></Badge>
               </div>
-              <p className="text-[11px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground"><LocalizedText>
                 Active tasks in development stay within capacity limits to minimize context switching.
-              </p>
+              </LocalizedText></p>
             </div>
 
             <div className="p-3.5 rounded-xl border border-border/40 bg-card/60 space-y-1">
               <div className="flex items-center justify-between font-semibold">
-                <span>Sprint Health</span>
-                <span className="text-emerald-500 font-semibold">92% on schedule</span>
+                <span><LocalizedText>Sprint Health</LocalizedText></span>
+                <span className="text-emerald-500 font-semibold"><LocalizedText>92% on schedule</LocalizedText></span>
               </div>
-              <p className="text-[11px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground"><LocalizedText>
                 Current burndown trend projects zero spillover for Sprint 24.
-              </p>
+              </LocalizedText></p>
             </div>
           </div>
         </Card>
@@ -216,3 +217,4 @@ export default function ReportsPage() {
     </div>
   );
 }
+

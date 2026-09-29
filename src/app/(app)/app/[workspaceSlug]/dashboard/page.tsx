@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -29,6 +31,7 @@ import { formatTimerClock, formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function DashboardPage() {
+  const { locale } = useLocale();
   const params = useParams();
   const workspaceSlug = params.workspaceSlug as string;
   const startTimer = useTimerStore((s) => s.startTimer);
@@ -56,13 +59,13 @@ export default function DashboardPage() {
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
       case "URGENT":
-        return <Badge variant="urgent">Urgent</Badge>;
+        return <Badge variant="urgent"><LocalizedText>Urgent</LocalizedText></Badge>;
       case "HIGH":
-        return <Badge variant="warning">High</Badge>;
+        return <Badge variant="warning"><LocalizedText>High</LocalizedText></Badge>;
       case "MEDIUM":
-        return <Badge variant="default">Medium</Badge>;
+        return <Badge variant="default"><LocalizedText>Medium</LocalizedText></Badge>;
       default:
-        return <Badge variant="secondary">Low</Badge>;
+        return <Badge variant="secondary"><LocalizedText>Low</LocalizedText></Badge>;
     }
   };
 
@@ -99,16 +102,22 @@ export default function DashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">Today's Pulse</h1>
+            <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Today's Pulse</LocalizedText></h1>
             <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse" /><LocalizedText>
               All Systems Operational
-            </span>
+            </LocalizedText></span>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
-            You have <strong className="text-foreground">{myTasks.length}</strong> active tasks,{" "}
-            <strong className="text-foreground">{todayEvents.length}</strong> events scheduled, and{" "}
-            <strong className="text-foreground">{overdueTasks.length}</strong> overdue items.
+            {locale === "ru" ? (
+              <>
+                Активных задач: <strong className="text-foreground">{myTasks.length}</strong>; событий сегодня: <strong className="text-foreground">{todayEvents.length}</strong>; просрочено: <strong className="text-foreground">{overdueTasks.length}</strong>.
+              </>
+            ) : (
+              <>
+                You have <strong className="text-foreground">{myTasks.length}</strong> active tasks, <strong className="text-foreground">{todayEvents.length}</strong> events scheduled, and <strong className="text-foreground">{overdueTasks.length}</strong> overdue items.
+              </>
+            )}
           </p>
         </div>
 
@@ -119,13 +128,13 @@ export default function DashboardPage() {
             onClick={() => setShowConfig(!showConfig)}
             className="text-xs gap-1.5"
           >
-            <SlidersHorizontal className="h-3.5 w-3.5" />
+            <SlidersHorizontal className="h-3.5 w-3.5" /><LocalizedText>
             Customize Widgets
-          </Button>
+          </LocalizedText></Button>
           <Button asChild size="sm" className="text-xs gap-1.5">
             <Link href={`/app/${workspaceSlug}/planner`}>
-              <Clock className="h-3.5 w-3.5" /> Open Day Planner
-            </Link>
+              <Clock className="h-3.5 w-3.5" /><LocalizedText> Open Day Planner
+            </LocalizedText></Link>
           </Button>
         </div>
       </div>
@@ -134,7 +143,7 @@ export default function DashboardPage() {
       {showConfig && (
         <Card className="border-dashed bg-card/50 p-4 animate-in fade-in-50">
           <div className="flex flex-wrap items-center gap-4 text-xs">
-            <span className="font-semibold text-muted-foreground">Toggle Widgets:</span>
+            <span className="font-semibold text-muted-foreground"><LocalizedText>Toggle Widgets:</LocalizedText></span>
             {Object.entries(enabledWidgets).map(([key, enabled]) => (
               <label key={key} className="flex items-center gap-1.5 cursor-pointer capitalize">
                 <input
@@ -148,7 +157,7 @@ export default function DashboardPage() {
                   }
                   className="rounded border-border text-primary focus:ring-primary"
                 />
-                <span>{key.replace(/([A-Z])/g, " $1")}</span>
+                <span><LocalizedText>{key.replace(/([A-Z])/g, " $1")}</LocalizedText></span>
               </label>
             ))}
           </div>
@@ -160,9 +169,9 @@ export default function DashboardPage() {
         <Card className="subtle-border bg-card/60 backdrop-blur-sm">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-xs text-muted-foreground font-medium">Assigned Tasks</div>
+              <div className="text-xs text-muted-foreground font-medium"><LocalizedText>Assigned Tasks</LocalizedText></div>
               <div className="text-2xl font-bold mt-0.5">{myTasks.length}</div>
-              <div className="text-[11px] text-muted-foreground mt-0.5">Across all active projects</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5"><LocalizedText>Across all active projects</LocalizedText></div>
             </div>
             <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
               <CheckSquare className="h-5 w-5" />
@@ -173,11 +182,11 @@ export default function DashboardPage() {
         <Card className="subtle-border bg-card/60 backdrop-blur-sm">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-xs text-muted-foreground font-medium">Hours Logged Today</div>
+              <div className="text-xs text-muted-foreground font-medium"><LocalizedText>Hours Logged Today</LocalizedText></div>
               <div className="text-2xl font-bold mt-0.5">
-                {(totalTimeLoggedToday / 3600).toFixed(1)}h
-              </div>
-              <div className="text-[11px] text-muted-foreground mt-0.5">Target: 7.5h daily</div>
+                {(totalTimeLoggedToday / 3600).toFixed(1)}<LocalizedText>h
+              </LocalizedText></div>
+              <div className="text-[11px] text-muted-foreground mt-0.5"><LocalizedText>Target: 7.5h daily</LocalizedText></div>
             </div>
             <div className="h-10 w-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
               <Clock className="h-5 w-5" />
@@ -188,7 +197,7 @@ export default function DashboardPage() {
         <Card className="subtle-border bg-card/60 backdrop-blur-sm">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-xs text-muted-foreground font-medium">Sprint Completion</div>
+              <div className="text-xs text-muted-foreground font-medium"><LocalizedText>Sprint Completion</LocalizedText></div>
               <div className="text-2xl font-bold mt-0.5">
                 {activeSprint ? `${activeSprint.percent}%` : "0%"}
               </div>
@@ -205,11 +214,11 @@ export default function DashboardPage() {
         <Card className="subtle-border bg-card/60 backdrop-blur-sm">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <div className="text-xs text-muted-foreground font-medium">Overdue Deadlines</div>
+              <div className="text-xs text-muted-foreground font-medium"><LocalizedText>Overdue Deadlines</LocalizedText></div>
               <div className="text-2xl font-bold mt-0.5 text-rose-500">
                 {overdueTasks.length}
               </div>
-              <div className="text-[11px] text-muted-foreground mt-0.5">Needs immediate attention</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5"><LocalizedText>Needs immediate attention</LocalizedText></div>
             </div>
             <div className="h-10 w-10 rounded-xl bg-rose-500/10 flex items-center justify-center text-rose-500">
               <AlertCircle className="h-5 w-5" />
@@ -228,23 +237,23 @@ export default function DashboardPage() {
               <CardHeader className="flex flex-row items-center justify-between pb-3">
                 <div className="space-y-0.5">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <ListTodo className="h-4 w-4 text-primary" /> My Action Items
-                  </CardTitle>
-                  <CardDescription className="text-xs">
+                    <ListTodo className="h-4 w-4 text-primary" /><LocalizedText> My Action Items
+                  </LocalizedText></CardTitle>
+                  <CardDescription className="text-xs"><LocalizedText>
                     Prioritized tasks currently assigned to you
-                  </CardDescription>
+                  </LocalizedText></CardDescription>
                 </div>
                 <Button asChild variant="ghost" size="sm" className="text-xs h-7 gap-1">
-                  <Link href={`/app/${workspaceSlug}/tasks`}>
-                    View All <ArrowRight className="h-3 w-3" />
+                  <Link href={`/app/${workspaceSlug}/tasks`}><LocalizedText>
+                    View All </LocalizedText><ArrowRight className="h-3 w-3" />
                   </Link>
                 </Button>
               </CardHeader>
               <CardContent className="space-y-2">
                 {myTasks.length === 0 ? (
-                  <div className="text-center py-8 text-muted-foreground text-xs">
+                  <div className="text-center py-8 text-muted-foreground text-xs"><LocalizedText>
                     No active tasks assigned! Great job clearing your queue.
-                  </div>
+                  </LocalizedText></div>
                 ) : (
                   myTasks.map((task: any) => (
                     <div
@@ -290,15 +299,15 @@ export default function DashboardPage() {
               <CardHeader className="flex flex-row items-center justify-between pb-3">
                 <div className="space-y-0.5">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Layers className="h-4 w-4 text-primary" /> Active Projects
-                  </CardTitle>
-                  <CardDescription className="text-xs">
+                    <Layers className="h-4 w-4 text-primary" /><LocalizedText> Active Projects
+                  </LocalizedText></CardTitle>
+                  <CardDescription className="text-xs"><LocalizedText>
                     Progress tracking across high-velocity deliverables
-                  </CardDescription>
+                  </LocalizedText></CardDescription>
                 </div>
                 <Button asChild variant="ghost" size="sm" className="text-xs h-7 gap-1">
-                  <Link href={`/app/${workspaceSlug}/projects`}>
-                    All Projects <ArrowRight className="h-3 w-3" />
+                  <Link href={`/app/${workspaceSlug}/projects`}><LocalizedText>
+                    All Projects </LocalizedText><ArrowRight className="h-3 w-3" />
                   </Link>
                 </Button>
               </CardHeader>
@@ -326,8 +335,8 @@ export default function DashboardPage() {
 
                     <div className="space-y-1">
                       <div className="flex justify-between text-[11px] text-muted-foreground">
-                        <span>Progress</span>
-                        <span>{proj.percent}%</span>
+                        <span><LocalizedText>Progress</LocalizedText></span>
+                        <span>{proj.percent}<LocalizedText>%</LocalizedText></span>
                       </div>
                       <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
                         <div
@@ -353,10 +362,10 @@ export default function DashboardPage() {
             <Card className="subtle-border">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] uppercase tracking-wider font-semibold text-primary">
+                  <span className="text-[11px] uppercase tracking-wider font-semibold text-primary"><LocalizedText>
                     Active Sprint
-                  </span>
-                  <Badge variant="success">In Progress</Badge>
+                  </LocalizedText></span>
+                  <Badge variant="success"><LocalizedText>In Progress</LocalizedText></Badge>
                 </div>
                 <CardTitle className="text-sm font-semibold mt-1">
                   {activeSprint.name}
@@ -368,8 +377,8 @@ export default function DashboardPage() {
               <CardContent className="space-y-3 pt-2">
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs font-medium">
-                    <span>Sprint Velocity</span>
-                    <span>{activeSprint.percent}%</span>
+                    <span><LocalizedText>Sprint Velocity</LocalizedText></span>
+                    <span>{activeSprint.percent}<LocalizedText>%</LocalizedText></span>
                   </div>
                   <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                     <div
@@ -382,15 +391,15 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-3 gap-2 pt-2 text-center text-xs">
                   <div className="p-2 rounded-lg bg-muted/40 border border-border/40">
                     <div className="font-bold text-foreground">{activeSprint.total}</div>
-                    <div className="text-[10px] text-muted-foreground">Total</div>
+                    <div className="text-[10px] text-muted-foreground"><LocalizedText>Total</LocalizedText></div>
                   </div>
                   <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary">
                     <div className="font-bold">{activeSprint.inProgress}</div>
-                    <div className="text-[10px]">Active</div>
+                    <div className="text-[10px]"><LocalizedText>Active</LocalizedText></div>
                   </div>
                   <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-500">
                     <div className="font-bold">{activeSprint.done}</div>
-                    <div className="text-[10px]">Shipped</div>
+                    <div className="text-[10px]"><LocalizedText>Shipped</LocalizedText></div>
                   </div>
                 </div>
               </CardContent>
@@ -402,20 +411,20 @@ export default function DashboardPage() {
             <Card className="subtle-border">
               <CardHeader className="pb-2 flex flex-row items-center justify-between">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-primary" /> Today's Agenda
-                </CardTitle>
+                  <Calendar className="h-4 w-4 text-primary" /><LocalizedText> Today's Agenda
+                </LocalizedText></CardTitle>
                 <Link
                   href={`/app/${workspaceSlug}/calendar`}
                   className="text-[11px] text-primary hover:underline"
-                >
+                ><LocalizedText>
                   Calendar
-                </Link>
+                </LocalizedText></Link>
               </CardHeader>
               <CardContent className="space-y-2 pt-2">
                 {todayEvents.length === 0 ? (
-                  <div className="text-xs text-muted-foreground text-center py-4">
+                  <div className="text-xs text-muted-foreground text-center py-4"><LocalizedText>
                     No scheduled meetings today. Open day for focus time!
-                  </div>
+                  </LocalizedText></div>
                 ) : (
                   todayEvents.map((evt: any) => (
                     <div
@@ -426,12 +435,12 @@ export default function DashboardPage() {
                       <div className="text-[11px] text-muted-foreground flex items-center gap-1.5">
                         <Clock className="h-3 w-3" />
                         <span>
-                          {new Date(evt.startTime).toLocaleTimeString([], {
+                          {new Date(evt.startTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
-                          })}{" "}
-                          -{" "}
-                          {new Date(evt.endTime).toLocaleTimeString([], {
+                          })}{" "}<LocalizedText>
+                          -</LocalizedText>{" "}
+                          {new Date(evt.endTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
                           })}
@@ -449,8 +458,8 @@ export default function DashboardPage() {
             <Card className="subtle-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Activity className="h-4 w-4 text-primary" /> Workspace Activity
-                </CardTitle>
+                  <Activity className="h-4 w-4 text-primary" /><LocalizedText> Workspace Activity
+                </LocalizedText></CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 pt-2">
                 {recentActivity.map((act: any) => (
@@ -480,3 +489,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

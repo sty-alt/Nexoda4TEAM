@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React from "react";
 import { useUIStore } from "@/store/useUIStore";
 import {
@@ -42,15 +43,15 @@ export function KeyboardShortcutsDialog() {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-base">
-            <Keyboard className="h-4 w-4 text-primary" /> Keyboard Shortcuts
-          </DialogTitle>
+            <Keyboard className="h-4 w-4 text-primary" /><LocalizedText> Keyboard Shortcuts
+          </LocalizedText></DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4 py-2">
           {shortcutGroups.map((group) => (
             <div key={group.category} className="space-y-2">
               <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-                {group.category}
+                <LocalizedText>{group.category}</LocalizedText>
               </div>
               <div className="divide-y divide-border/30 rounded-lg border border-border/40 overflow-hidden bg-card/50">
                 {group.items.map((item, idx) => (
@@ -58,7 +59,7 @@ export function KeyboardShortcutsDialog() {
                     key={idx}
                     className="flex items-center justify-between p-2.5 text-xs"
                   >
-                    <span className="text-foreground">{item.description}</span>
+                    <span className="text-foreground"><LocalizedText>{item.description}</LocalizedText></span>
                     <div className="flex items-center gap-1">
                       {item.keys.map((k, kIdx) => (
                         <kbd
@@ -79,3 +80,4 @@ export function KeyboardShortcutsDialog() {
     </Dialog>
   );
 }
+

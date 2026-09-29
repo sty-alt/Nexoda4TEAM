@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -48,21 +49,21 @@ function OnboardingContent() {
         {/* Header with step indicators */}
         <div className="text-center space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold">
-            <Sparkles className="h-3.5 w-3.5" /> Quick Setup • Step {step} of 3
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight">Configure your environment</h1>
-          <p className="text-sm text-muted-foreground">
+            <Sparkles className="h-3.5 w-3.5" /><LocalizedText> Quick Setup • Step </LocalizedText>{step}<LocalizedText> of 3
+          </LocalizedText></div>
+          <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Configure your environment</LocalizedText></h1>
+          <p className="text-sm text-muted-foreground"><LocalizedText>
             Personalize Nexoda4TEAM to match your team's rhythm
-          </p>
+          </LocalizedText></p>
         </div>
 
         <div className="p-6 rounded-2xl border border-border/80 bg-card/80 backdrop-blur-md shadow-xl">
           {/* Step 1: Select Template */}
           {step === 1 && (
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-foreground">
+              <h3 className="text-sm font-semibold text-foreground"><LocalizedText>
                 How will you primarily use Nexoda4TEAM?
-              </h3>
+              </LocalizedText></h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <button
                   type="button"
@@ -74,10 +75,10 @@ function OnboardingContent() {
                   }`}
                 >
                   <Code2 className="h-6 w-6 mb-2" />
-                  <div className="font-semibold text-sm">Engineering</div>
-                  <div className="text-[11px] text-muted-foreground mt-1">
+                  <div className="font-semibold text-sm"><LocalizedText>Engineering</LocalizedText></div>
+                  <div className="text-[11px] text-muted-foreground mt-1"><LocalizedText>
                     Linear issues, sprints, GitHub link
-                  </div>
+                  </LocalizedText></div>
                 </button>
 
                 <button
@@ -90,10 +91,10 @@ function OnboardingContent() {
                   }`}
                 >
                   <Palette className="h-6 w-6 mb-2" />
-                  <div className="font-semibold text-sm">Product & Design</div>
-                  <div className="text-[11px] text-muted-foreground mt-1">
+                  <div className="font-semibold text-sm"><LocalizedText>Product & Design</LocalizedText></div>
+                  <div className="text-[11px] text-muted-foreground mt-1"><LocalizedText>
                     Roadmaps, Notion docs, specs
-                  </div>
+                  </LocalizedText></div>
                 </button>
 
                 <button
@@ -106,15 +107,15 @@ function OnboardingContent() {
                   }`}
                 >
                   <Briefcase className="h-6 w-6 mb-2" />
-                  <div className="font-semibold text-sm">Operations</div>
-                  <div className="text-[11px] text-muted-foreground mt-1">
+                  <div className="font-semibold text-sm"><LocalizedText>Operations</LocalizedText></div>
+                  <div className="text-[11px] text-muted-foreground mt-1"><LocalizedText>
                     Planner, time tracking, drives
-                  </div>
+                  </LocalizedText></div>
                 </button>
               </div>
 
-              <Button onClick={() => setStep(2)} className="w-full mt-4">
-                Next: Invite Colleagues <ArrowRight className="h-4 w-4 ml-1.5" />
+              <Button onClick={() => setStep(2)} className="w-full mt-4"><LocalizedText>
+                Next: Invite Colleagues </LocalizedText><ArrowRight className="h-4 w-4 ml-1.5" />
               </Button>
             </div>
           )}
@@ -124,11 +125,11 @@ function OnboardingContent() {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold">Invite your team</h3>
+                <h3 className="text-sm font-semibold"><LocalizedText>Invite your team</LocalizedText></h3>
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground"><LocalizedText>
                 Enter emails of colleagues who should join this workspace. You can also invite more later.
-              </p>
+              </LocalizedText></p>
               <Input
                 value={teamEmails}
                 onChange={(e) => setTeamEmails(e.target.value)}
@@ -137,11 +138,11 @@ function OnboardingContent() {
               />
 
               <div className="flex gap-2 pt-2">
-                <Button variant="outline" onClick={() => setStep(1)} className="flex-1">
+                <Button variant="outline" onClick={() => setStep(1)} className="flex-1"><LocalizedText>
                   Back
-                </Button>
-                <Button onClick={() => setStep(3)} className="flex-1">
-                  Next: First Project <ArrowRight className="h-4 w-4 ml-1.5" />
+                </LocalizedText></Button>
+                <Button onClick={() => setStep(3)} className="flex-1"><LocalizedText>
+                  Next: First Project </LocalizedText><ArrowRight className="h-4 w-4 ml-1.5" />
                 </Button>
               </div>
             </div>
@@ -150,9 +151,9 @@ function OnboardingContent() {
           {/* Step 3: First Project & Task */}
           {step === 3 && (
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold">Create your first project & issue</h3>
+              <h3 className="text-sm font-semibold"><LocalizedText>Create your first project & issue</LocalizedText></h3>
               <div className="space-y-2">
-                <label className="text-xs text-muted-foreground">Project Name</label>
+                <label className="text-xs text-muted-foreground"><LocalizedText>Project Name</LocalizedText></label>
                 <Input
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
@@ -160,7 +161,7 @@ function OnboardingContent() {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-xs text-muted-foreground">First Task / Issue</label>
+                <label className="text-xs text-muted-foreground"><LocalizedText>First Task / Issue</LocalizedText></label>
                 <Input
                   value={firstTask}
                   onChange={(e) => setFirstTask(e.target.value)}
@@ -169,11 +170,11 @@ function OnboardingContent() {
               </div>
 
               <div className="flex gap-2 pt-2">
-                <Button variant="outline" onClick={() => setStep(2)} className="flex-1">
+                <Button variant="outline" onClick={() => setStep(2)} className="flex-1"><LocalizedText>
                   Back
-                </Button>
-                <Button onClick={finishOnboarding} className="flex-1">
-                  Launch Workspace <Check className="h-4 w-4 ml-1.5" />
+                </LocalizedText></Button>
+                <Button onClick={finishOnboarding} className="flex-1"><LocalizedText>
+                  Launch Workspace </LocalizedText><Check className="h-4 w-4 ml-1.5" />
                 </Button>
               </div>
             </div>
@@ -186,8 +187,9 @@ function OnboardingContent() {
 
 export default function OnboardingPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-xs text-muted-foreground">Loading onboarding...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-xs text-muted-foreground"><LocalizedText>Loading onboarding...</LocalizedText></div>}>
       <OnboardingContent />
     </Suspense>
   );
 }
+

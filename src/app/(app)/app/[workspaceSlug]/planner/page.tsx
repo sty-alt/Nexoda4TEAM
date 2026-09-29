@@ -1,5 +1,7 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
+import { useLocale } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -35,6 +37,7 @@ import { formatTime, formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function PlannerPage() {
+  const { locale } = useLocale();
   const params = useParams();
   const workspaceSlug = params.workspaceSlug as string;
   const queryClient = useQueryClient();
@@ -171,14 +174,14 @@ export default function PlannerPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">Motion Personal Planner</h1>
-            <Badge variant="default" className="text-xs">
-              Today: {formatDate(new Date())}
+            <h1 className="text-2xl font-bold tracking-tight"><LocalizedText>Motion Personal Planner</LocalizedText></h1>
+            <Badge variant="default" className="text-xs"><LocalizedText>
+              Today: </LocalizedText>{formatDate(new Date(), locale)}
             </Badge>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5"><LocalizedText>
             Structured daily time-blocking: turn backlog issues into intentional action items
-          </p>
+          </LocalizedText></p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -190,8 +193,8 @@ export default function PlannerPage() {
             }}
             className="text-xs gap-1.5"
           >
-            <Plus className="h-4 w-4" /> Add Time Block
-          </Button>
+            <Plus className="h-4 w-4" /><LocalizedText> Add Time Block
+          </LocalizedText></Button>
         </div>
       </div>
 
@@ -203,18 +206,18 @@ export default function PlannerPage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-semibold flex items-center justify-between">
                 <span className="flex items-center gap-2">
-                  <CheckSquare className="h-4 w-4 text-primary" /> Unscheduled Issues
-                </span>
+                  <CheckSquare className="h-4 w-4 text-primary" /><LocalizedText> Unscheduled Issues
+                </LocalizedText></span>
                 <span className="text-xs font-mono text-muted-foreground font-normal">
-                  {tasks.length} items
-                </span>
+                  {tasks.length}<LocalizedText> items
+                </LocalizedText></span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2.5 max-h-[70vh] overflow-y-auto pr-1">
               {tasks.length === 0 ? (
-                <div className="text-center py-8 text-xs text-muted-foreground">
+                <div className="text-center py-8 text-xs text-muted-foreground"><LocalizedText>
                   No issues to schedule!
-                </div>
+                </LocalizedText></div>
               ) : (
                 tasks.map((task: any) => (
                   <div
@@ -226,7 +229,7 @@ export default function PlannerPage() {
                         {task.identifier}
                       </span>
                       <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground font-semibold">
-                        {task.priority}
+                        <LocalizedText>{task.priority}</LocalizedText>
                       </span>
                     </div>
 
@@ -234,8 +237,8 @@ export default function PlannerPage() {
 
                     <div className="flex items-center justify-between pt-1 border-t border-border/30 text-[11px]">
                       <span className="text-muted-foreground font-mono">
-                        {task.estimateHours || 2}h est.
-                      </span>
+                        {task.estimateHours || 2}<LocalizedText>h est.
+                      </LocalizedText></span>
 
                       <div className="flex items-center gap-1">
                         <Button
@@ -244,18 +247,18 @@ export default function PlannerPage() {
                           onClick={() => scheduleDirectTask(task, "morning")}
                           className="h-6 text-[10px] px-1.5"
                           title="Schedule in Morning"
-                        >
+                        ><LocalizedText>
                           AM
-                        </Button>
+                        </LocalizedText></Button>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => scheduleDirectTask(task, "afternoon")}
                           className="h-6 text-[10px] px-1.5"
                           title="Schedule in Afternoon"
-                        >
+                        ><LocalizedText>
                           PM
-                        </Button>
+                        </LocalizedText></Button>
                       </div>
                     </div>
                   </div>
@@ -275,8 +278,8 @@ export default function PlannerPage() {
                   <Sunrise className="h-4 w-4" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">Morning Focus</h3>
-                  <div className="text-[11px] text-muted-foreground">08:00 — 12:00</div>
+                  <h3 className="font-semibold text-sm"><LocalizedText>Morning Focus</LocalizedText></h3>
+                  <div className="text-[11px] text-muted-foreground"><LocalizedText>08:00 — 12:00</LocalizedText></div>
                 </div>
               </div>
 
@@ -289,15 +292,15 @@ export default function PlannerPage() {
                 }}
                 className="h-7 text-xs gap-1"
               >
-                <Plus className="h-3.5 w-3.5" /> Add
-              </Button>
+                <Plus className="h-3.5 w-3.5" /><LocalizedText> Add
+              </LocalizedText></Button>
             </div>
 
             <div className="space-y-2">
               {categorizedEvents.morning.length === 0 ? (
-                <div className="p-4 text-center text-xs text-muted-foreground border border-dashed rounded-lg">
+                <div className="p-4 text-center text-xs text-muted-foreground border border-dashed rounded-lg"><LocalizedText>
                   No blocks scheduled for morning. Add an action item or meeting.
-                </div>
+                </LocalizedText></div>
               ) : (
                 categorizedEvents.morning.map((evt: any) => (
                   <div
@@ -309,12 +312,12 @@ export default function PlannerPage() {
                       <div className="text-[11px] text-muted-foreground flex items-center gap-2">
                         <Clock className="h-3 w-3" />
                         <span>
-                          {new Date(evt.startTime).toLocaleTimeString([], {
+                          {new Date(evt.startTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
-                          })}{" "}
-                          -{" "}
-                          {new Date(evt.endTime).toLocaleTimeString([], {
+                          })}{" "}<LocalizedText>
+                          -</LocalizedText>{" "}
+                          {new Date(evt.endTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
                           })}
@@ -332,8 +335,8 @@ export default function PlannerPage() {
                         }}
                         className="h-7 text-xs gap-1"
                       >
-                        <Play className="h-3 w-3 fill-primary text-primary" /> Start
-                      </Button>
+                        <Play className="h-3 w-3 fill-primary text-primary" /><LocalizedText> Start
+                      </LocalizedText></Button>
                     </div>
                   </div>
                 ))
@@ -349,8 +352,8 @@ export default function PlannerPage() {
                   <Sun className="h-4 w-4" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">Afternoon Deep Work</h3>
-                  <div className="text-[11px] text-muted-foreground">12:00 — 17:00</div>
+                  <h3 className="font-semibold text-sm"><LocalizedText>Afternoon Deep Work</LocalizedText></h3>
+                  <div className="text-[11px] text-muted-foreground"><LocalizedText>12:00 — 17:00</LocalizedText></div>
                 </div>
               </div>
 
@@ -363,15 +366,15 @@ export default function PlannerPage() {
                 }}
                 className="h-7 text-xs gap-1"
               >
-                <Plus className="h-3.5 w-3.5" /> Add
-              </Button>
+                <Plus className="h-3.5 w-3.5" /><LocalizedText> Add
+              </LocalizedText></Button>
             </div>
 
             <div className="space-y-2">
               {categorizedEvents.afternoon.length === 0 ? (
-                <div className="p-4 text-center text-xs text-muted-foreground border border-dashed rounded-lg">
+                <div className="p-4 text-center text-xs text-muted-foreground border border-dashed rounded-lg"><LocalizedText>
                   No afternoon blocks scheduled.
-                </div>
+                </LocalizedText></div>
               ) : (
                 categorizedEvents.afternoon.map((evt: any) => (
                   <div
@@ -383,12 +386,12 @@ export default function PlannerPage() {
                       <div className="text-[11px] text-muted-foreground flex items-center gap-2">
                         <Clock className="h-3 w-3" />
                         <span>
-                          {new Date(evt.startTime).toLocaleTimeString([], {
+                          {new Date(evt.startTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
-                          })}{" "}
-                          -{" "}
-                          {new Date(evt.endTime).toLocaleTimeString([], {
+                          })}{" "}<LocalizedText>
+                          -</LocalizedText>{" "}
+                          {new Date(evt.endTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
                           })}
@@ -406,8 +409,8 @@ export default function PlannerPage() {
                         }}
                         className="h-7 text-xs gap-1"
                       >
-                        <Play className="h-3 w-3 fill-primary text-primary" /> Start
-                      </Button>
+                        <Play className="h-3 w-3 fill-primary text-primary" /><LocalizedText> Start
+                      </LocalizedText></Button>
                     </div>
                   </div>
                 ))
@@ -423,8 +426,8 @@ export default function PlannerPage() {
                   <Sunset className="h-4 w-4" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">Evening Wrap-up</h3>
-                  <div className="text-[11px] text-muted-foreground">17:00 — 21:00</div>
+                  <h3 className="font-semibold text-sm"><LocalizedText>Evening Wrap-up</LocalizedText></h3>
+                  <div className="text-[11px] text-muted-foreground"><LocalizedText>17:00 — 21:00</LocalizedText></div>
                 </div>
               </div>
 
@@ -437,15 +440,15 @@ export default function PlannerPage() {
                 }}
                 className="h-7 text-xs gap-1"
               >
-                <Plus className="h-3.5 w-3.5" /> Add
-              </Button>
+                <Plus className="h-3.5 w-3.5" /><LocalizedText> Add
+              </LocalizedText></Button>
             </div>
 
             <div className="space-y-2">
               {categorizedEvents.evening.length === 0 ? (
-                <div className="p-4 text-center text-xs text-muted-foreground border border-dashed rounded-lg">
+                <div className="p-4 text-center text-xs text-muted-foreground border border-dashed rounded-lg"><LocalizedText>
                   No evening blocks scheduled.
-                </div>
+                </LocalizedText></div>
               ) : (
                 categorizedEvents.evening.map((evt: any) => (
                   <div
@@ -457,12 +460,12 @@ export default function PlannerPage() {
                       <div className="text-[11px] text-muted-foreground flex items-center gap-2">
                         <Clock className="h-3 w-3" />
                         <span>
-                          {new Date(evt.startTime).toLocaleTimeString([], {
+                          {new Date(evt.startTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
-                          })}{" "}
-                          -{" "}
-                          {new Date(evt.endTime).toLocaleTimeString([], {
+                          })}{" "}<LocalizedText>
+                          -</LocalizedText>{" "}
+                          {new Date(evt.endTime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
                             hour: "2-digit",
                             minute: "2-digit",
                           })}
@@ -480,8 +483,8 @@ export default function PlannerPage() {
                         }}
                         className="h-7 text-xs gap-1"
                       >
-                        <Play className="h-3 w-3 fill-primary text-primary" /> Start
-                      </Button>
+                        <Play className="h-3 w-3 fill-primary text-primary" /><LocalizedText> Start
+                      </LocalizedText></Button>
                     </div>
                   </div>
                 ))
@@ -497,35 +500,35 @@ export default function PlannerPage() {
           <form onSubmit={handleScheduleSubmit}>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2 text-base">
-                <CalendarDays className="h-5 w-5 text-primary" /> Schedule Action Item
-              </DialogTitle>
+                <CalendarDays className="h-5 w-5 text-primary" /><LocalizedText> Schedule Action Item
+              </LocalizedText></DialogTitle>
             </DialogHeader>
 
             <div className="space-y-3 py-3 text-xs">
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Select Day Block</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Select Day Block</LocalizedText></label>
                 <select
                   value={selectedBlockType}
                   onChange={(e: any) => setSelectedBlockType(e.target.value)}
                   className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                 >
-                  <option value="morning">Morning (08:00 - 12:00)</option>
-                  <option value="afternoon">Afternoon (12:00 - 17:00)</option>
-                  <option value="evening">Evening (17:00 - 21:00)</option>
+                  <option value="morning"><LocalizedText>Morning (08:00 - 12:00)</LocalizedText></option>
+                  <option value="afternoon"><LocalizedText>Afternoon (12:00 - 17:00)</LocalizedText></option>
+                  <option value="evening"><LocalizedText>Evening (17:00 - 21:00)</LocalizedText></option>
                 </select>
               </div>
 
               <div className="space-y-1">
-                <label className="font-medium text-muted-foreground">Link Issue (Optional)</label>
+                <label className="font-medium text-muted-foreground"><LocalizedText>Link Issue (Optional)</LocalizedText></label>
                 <select
                   value={selectedTaskId}
                   onChange={(e) => setSelectedTaskId(e.target.value)}
                   className="w-full h-8 rounded-md border border-input bg-background px-2 text-xs"
                 >
-                  <option value="">No linked issue (Custom event)</option>
+                  <option value=""><LocalizedText>No linked issue (Custom event)</LocalizedText></option>
                   {tasks.map((t: any) => (
                     <option key={t.id} value={t.id}>
-                      {t.identifier} - {t.title}
+                      {t.identifier}<LocalizedText> - </LocalizedText>{t.title}
                     </option>
                   ))}
                 </select>
@@ -533,7 +536,7 @@ export default function PlannerPage() {
 
               {!selectedTaskId && (
                 <div className="space-y-1">
-                  <label className="font-medium text-muted-foreground">Block Title</label>
+                  <label className="font-medium text-muted-foreground"><LocalizedText>Block Title</LocalizedText></label>
                   <Input
                     placeholder="e.g. Design critique & roadmap sync"
                     value={newTitle}
@@ -550,12 +553,12 @@ export default function PlannerPage() {
                 variant="outline"
                 size="sm"
                 onClick={() => setCreateBlockOpen(false)}
-              >
+              ><LocalizedText>
                 Cancel
-              </Button>
-              <Button type="submit" size="sm" disabled={createEventMutation.isPending}>
+              </LocalizedText></Button>
+              <Button type="submit" size="sm" disabled={createEventMutation.isPending}><LocalizedText>
                 Schedule
-              </Button>
+              </LocalizedText></Button>
             </DialogFooter>
           </form>
         </DialogContent>
@@ -563,3 +566,4 @@ export default function PlannerPage() {
     </div>
   );
 }
+

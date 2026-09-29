@@ -1,5 +1,6 @@
 "use client";
 
+import { LocalizedText } from "@/i18n/locale-provider";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -85,7 +86,7 @@ export function WorkspaceSwitcher({
                 </div>
                 <div className="text-[10px] text-muted-foreground flex items-center gap-1">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  {currentWorkspace.role || "Owner"}
+                  <LocalizedText>{currentWorkspace.role || "Owner"}</LocalizedText>
                 </div>
               </div>
             </div>
@@ -94,9 +95,9 @@ export function WorkspaceSwitcher({
         </DropdownMenuTrigger>
 
         <DropdownMenuContent className="w-56" align="start">
-          <DropdownMenuLabel className="text-[11px] text-muted-foreground uppercase tracking-wider font-semibold">
+          <DropdownMenuLabel className="text-[11px] text-muted-foreground uppercase tracking-wider font-semibold"><LocalizedText>
             Workspaces
-          </DropdownMenuLabel>
+          </LocalizedText></DropdownMenuLabel>
           {workspaces.map((ws) => {
             const isActive = ws.slug === currentWorkspace.slug;
             return (
@@ -122,7 +123,7 @@ export function WorkspaceSwitcher({
             className="cursor-pointer gap-2 py-2 text-xs text-primary"
           >
             <Plus className="h-4 w-4" />
-            <span>Create New Workspace</span>
+            <span><LocalizedText>Create New Workspace</LocalizedText></span>
           </DropdownMenuItem>
 
           <DropdownMenuItem
@@ -130,7 +131,7 @@ export function WorkspaceSwitcher({
             className="cursor-pointer gap-2 py-2 text-xs text-muted-foreground"
           >
             <Settings className="h-4 w-4" />
-            <span>Workspace Settings</span>
+            <span><LocalizedText>Workspace Settings</LocalizedText></span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -140,13 +141,13 @@ export function WorkspaceSwitcher({
           <form onSubmit={handleCreateWorkspace}>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <Building className="h-5 w-5 text-primary" /> Create Workspace
-              </DialogTitle>
+                <Building className="h-5 w-5 text-primary" /><LocalizedText> Create Workspace
+              </LocalizedText></DialogTitle>
             </DialogHeader>
             <div className="py-4 space-y-3">
-              <label className="text-xs font-medium text-muted-foreground">
+              <label className="text-xs font-medium text-muted-foreground"><LocalizedText>
                 Workspace Name
-              </label>
+              </LocalizedText></label>
               <Input
                 placeholder="e.g. Next Ventures"
                 value={newWsName}
@@ -160,11 +161,11 @@ export function WorkspaceSwitcher({
                 type="button"
                 variant="outline"
                 onClick={() => setCreateOpen(false)}
-              >
+              ><LocalizedText>
                 Cancel
-              </Button>
+              </LocalizedText></Button>
               <Button type="submit" disabled={loading}>
-                {loading ? "Creating..." : "Create"}
+                {loading ? <LocalizedText>Creating...</LocalizedText> : <LocalizedText>Create</LocalizedText>}
               </Button>
             </DialogFooter>
           </form>
@@ -173,3 +174,4 @@ export function WorkspaceSwitcher({
     </>
   );
 }
+

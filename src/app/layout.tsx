@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { cookies, headers } from "next/headers";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import type { Locale } from "@/i18n/messages";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +18,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const savedLocale = cookies().get("nexoda_locale")?.value;
+  const browserLocale = headers().get("accept-language")?.split(",")[0]?.split("-")[0];
+  const locale: Locale = savedLocale === "ru" || (!savedLocale && browserLocale === "ru") ? "ru" : "en";
+
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang={locale} className="dark" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers initialLocale={locale}>{children}</Providers>
       </body>
     </html>
   );
 }
+
