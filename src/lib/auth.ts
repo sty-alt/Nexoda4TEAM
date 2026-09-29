@@ -3,8 +3,18 @@ import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { prisma } from "./prisma";
 
-const JWT_SECRET = process.env.JWT_SECRET || "nexoda_super_secret_jwt_key_2026_everything_app";
 const AUTH_COOKIE_NAME = "nexoda_session_token";
+
+function getJwtSecret(): string {
+  const configuredSecret = process.env.JWT_SECRET;
+  if (configuredSecret) return configuredSecret;
+
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("JWT_SECRET must be configured in production.");
+  }
+
+  return "nexoda4team-development-only-secret";
+}
 
 export interface SessionUser {
   id: string;
@@ -23,12 +33,12 @@ export function comparePassword(password: string, hash: string): boolean {
 }
 
 export function createToken(payload: SessionUser): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: "30d" });
+  return jwt.sign(payload, getJwtSecret(), { expiresIn: "30d" });
 }
 
 export function verifyToken(token: string): SessionUser | null {
   try {
-    return jwt.verify(token, JWT_SECRET) as SessionUser;
+    return jwt.verify(token, getJwtSecret()) as SessionUser;
   } catch {
     return null;
   }

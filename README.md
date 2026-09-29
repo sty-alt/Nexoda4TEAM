@@ -46,6 +46,12 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 NEXT_PUBLIC_APP_NAME="Nexoda4TEAM"
 ```
 
+In production, set `JWT_SECRET` to a unique random value. Generate one with:
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+The application refuses to sign production sessions when `JWT_SECRET` is missing. Local development uses a development-only fallback.
+
 ### 4. Database Setup & Demo Seed Data
 Initialize the database and populate the realistic **Acme Corporation** demo dataset:
 ```bash
